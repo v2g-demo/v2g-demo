@@ -1,10 +1,48 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<header class="navbar navbar-expand navbar-dark px-4 flex-column flex-md-row">
+
+  <a class="navbar-brand mr-2 mr-md-0" routerLink="/" aria-label="NG Bootstrap" (click)="navbarCollapsed = true">
+    <span class="ml-2 d-xl-none d-lg-none d-md-none d-inline">ng-bootstrap</span>
+  </a>
+
+  <div class="navbar-nav-scroll">
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">Getting Started</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['/components']" (click)="navbarCollapsed = true">Components</a>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="social-buttons navbar-nav flex-row ml-md-auto d-none d-lg-flex align-items-center">
+    <a class="github-button" href="https://github.com/ng-bootstrap/ng-bootstrap" rel="noopener" target="_blank" data-size="large" data-show-count="true"
+       data-count-aria-label="# stargazers on GitHub" aria-label="Star ng-bootstrap/ng-bootstrap on GitHub">Star</a>
+    <a href="https://twitter.com/intent/tweet?button_hashtag=ngbootstrap" rel="noopener" class="twitter-hashtag-button" data-size="large" data-text="I&#39;m checking out ng-bootstrap, THE Angular UI framework for Bootstrap CSS"
+       data-url="https://ng-bootstrap.github.io" data-show-count="true">Tweet #ngbootstrap</a>
+  </ul>
+
+  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</header>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer bg-light">
+  <div class="container-fluid p-3 p-md-5">
+    <p>Designed and built by the
+      <a href="https://github.com/orgs/ng-bootstrap/people" rel="noopener" target="_blank">ng-bootstrap team
+      </a> with the help of our
+      <a href="https://github.com/ng-bootstrap/ng-bootstrap/graphs/contributors" rel="noopener" target="_blank">contributors</a>.</p>
+    <p>Code licensed under
+      <a href="https://raw.githubusercontent.com/ng-bootstrap/ng-bootstrap/master/LICENSE" rel="noopener" target="_blank">MIT license conditions.</a>
+    </p>
 
 
-<app-mapboxmap></app-mapboxmap>
-
-<router-outlet></router-outlet>
+  </div>
+</footer>
