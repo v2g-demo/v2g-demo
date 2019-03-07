@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 // import {MapboxmapComponent} from './mapboxmap/mapboxmap.component';
 
 
@@ -32,6 +33,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
   declarations: [
     AppComponent,
     WelcomeComponent,
+    NotFoundComponent,
    // MapboxmapComponent
   ],
   imports: [
