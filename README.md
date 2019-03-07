@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/AndreyBronin/v2g-demo.svg?branch=master)](https://travis-ci.org/AndreyBronin/v2g-demo)
+[![codecov](https://codecov.io/gh/AndreyBronin/v2g-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/AndreyBronin/v2g-demo)
 
 # Vehicle-to-grid (V2G) demo
 
