@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "10"
+dist: trusty
+sudo: required
+
+addons:
+  chrome: stable
+
+before_script:
+  - npm install -g @angular/cli
+  - cd frontend
+
+script:
+#  - ng lint
+#  - ng build --prod
+  - npm install
+  - ng build
+  - ng e2e
+  - npm run test-headless

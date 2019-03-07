@@ -1,6 +1,8 @@
-# V2gDemo
+[![Build Status](https://travis-ci.org/AndreyBronin/v2g-demo.svg?branch=master)](https://travis-ci.org/AndreyBronin/v2g-demo)
 
-The goal of this demo is to illustrate [Vehicle-to-grid technology(V2G)](https://en.wikipedia.org/wiki/Vehicle-to-grid) technology in simple multiplayer browser game. Before the game starts, a gamer chooses a map - a real city or a region.
+# Vehicle-to-grid (V2G) demo
+
+The goal of this demo is to illustrate [Vehicle-to-grid (V2G)](https://en.wikipedia.org/wiki/Vehicle-to-grid) technology in simple multiplayer browser game. Before the game starts, a gamer chooses a map - a real city or a region.
 
 The gamer is successful man, who lives in a house with a garage and who has a electric vehicle. There are several static objects on the game map: houses, offices with a parking slots, charger stations.
 
