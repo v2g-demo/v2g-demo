@@ -28,7 +28,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "./node_modules/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.slim.min.js",
