@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WelcomeComponent } from './welcome.component';
+import {Component} from '@angular/core';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
@@ -8,7 +9,7 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeComponent ]
+      declarations: [ WelcomeComponent, MockMapboxmapComponent ]
     })
     .compileComponents();
   }));
@@ -23,3 +24,11 @@ describe('WelcomeComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+@Component({
+  selector: 'app-mapboxmap',
+  template: ''
+})
+class MockMapboxmapComponent {
+}
