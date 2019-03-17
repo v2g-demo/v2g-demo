@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MapboxmapComponent } from './mapboxmap/mapboxmap.component';
-import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+
+import { MapComponent } from './map/map.component';
 
 
 // const DEMOS = [
@@ -35,18 +38,17 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
     AppComponent,
     WelcomeComponent,
     NotFoundComponent,
-    MapboxmapComponent
+    MapComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'API_KEY'
+    }),
+    AgmSnazzyInfoWindowModule
 
-    NgxMapboxGLModule.withConfig({
-      accessToken: 'pk.eyJ1IjoiYnJvbmluIiwiYSI6ImNqc2YzZGY0ejAwYWo0OW8ybnNiZHFkYXcifQ.r0Ql3m62AFAijSbWxGDkWQ', // Optionnal, can also be set per map (accessToken input of mgl-map)
-      geocoderAccessToken: 'pk.eyJ1IjoiYnJvbmluIiwiYSI6ImNqc2YzZGY0ejAwYWo0OW8ybnNiZHFkYXcifQ.r0Ql3m62AFAijSbWxGDkWQ' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
-    })
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

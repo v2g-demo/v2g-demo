@@ -1,0 +1,24 @@
+
+<agm-map [latitude]="51.673858" [longitude]="7.815982">
+  <agm-marker [latitude]="51.673858" [longitude]="7.815982">
+    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        My first Snazzy Info Window!
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+
+  <agm-marker
+    *ngFor="let marker of markers"
+    [latitude]="marker.lat"
+    [longitude]="marker.lng"
+    [opacity]="marker.alpha"
+    [markerDraggable]="true"
+    (markerClick)="selectMarker($event)"
+  >
+  </agm-marker>
+
+
+</agm-map>
+
+

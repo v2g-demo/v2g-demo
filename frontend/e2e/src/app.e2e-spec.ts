@@ -21,3 +21,16 @@ describe('workspace-project App', () => {
     } as logging.Entry));
   });
 });
+
+describe('About page', () => {
+  let page: AppPage;
+
+  beforeEach(() => {
+    page = new AppPage();
+  });
+
+  it('should display about text', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('Welcome to v2g-demo!');
+  });
+});
