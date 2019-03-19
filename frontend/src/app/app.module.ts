@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
-import { MapComponent } from './map/map.component';
+import { MapComponent } from './components/map/map.component';
+import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 
 
 // const DEMOS = [
@@ -39,6 +40,7 @@ import { MapComponent } from './map/map.component';
     WelcomeComponent,
     NotFoundComponent,
     MapComponent,
+    GameSelectorComponent,
   ],
   imports: [
     BrowserModule,
