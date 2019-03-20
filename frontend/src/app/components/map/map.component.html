@@ -13,7 +13,8 @@
     [latitude]="marker.lat"
     [longitude]="marker.lng"
     [opacity]="marker.alpha"
-    [markerDraggable]="true"
+    [iconUrl]="marker.icon"
+    [markerDraggable]="false"
     (markerClick)="selectMarker($event)"
   >
   </agm-marker>
