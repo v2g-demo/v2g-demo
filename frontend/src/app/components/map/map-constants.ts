@@ -17,7 +17,11 @@ export class MapConstants {
           fillOpacity: 1,
           strokeOpacity: 1,
           scale: 1,
-          strokeWeight: 1
+          strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       },
       {
@@ -32,7 +36,11 @@ export class MapConstants {
           fillOpacity: 1,
           strokeOpacity: 1,
           scale: 1,
-          strokeWeight: 1
+          strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       },
       {
@@ -47,7 +55,11 @@ export class MapConstants {
           fillOpacity: 1,
           strokeOpacity: 1,
           scale: 1,
-          strokeWeight: 1
+          strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       },
       {
@@ -62,7 +74,11 @@ export class MapConstants {
           fillOpacity: 1,
           strokeOpacity: 1,
           scale: 1,
-          strokeWeight: 1
+          strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       },
       {
@@ -78,6 +94,10 @@ export class MapConstants {
           strokeOpacity: 1,
           scale: 1,
           strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       },
       {
@@ -92,7 +112,11 @@ export class MapConstants {
           fillOpacity: 1,
           strokeOpacity: 1,
           scale: 1,
-          strokeWeight: 1
+          strokeWeight: 1,
+          anchor: {
+            x: 22,
+            y: 22
+          }
         },
       }
     ];
