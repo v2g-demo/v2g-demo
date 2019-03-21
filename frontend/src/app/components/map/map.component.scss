@@ -1,3 +1,25 @@
 agm-map {
   height: 500px;
 }
+.marker-control__container {
+   display: flex;
+  font-size: 16px;
+  justify-content: space-around;
+  margin-top: 15px;
+  .marker-control__buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: max-content;
+    .marker-control__button {
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #666666;
+      transition-duration: 0.3s;
+      margin: 0 2px;
+      &:hover {
+        background-color: #999999;
+      }
+    }
+  }
+}
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ApplicationRef, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {MapConstants} from "./map-constants";
 import {MarkerInterface} from "../../interfaces/marker.interface";
 
@@ -9,19 +9,19 @@ import {MarkerInterface} from "../../interfaces/marker.interface";
 })
 export class MapComponent implements OnInit {
   public markers: MarkerInterface[] = MapConstants.MARKERS_MOCK;
-  private selectedMarker;
+  public selectedMarker: number;
 
-  constructor() { }
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private appRef: ApplicationRef,
+  ) { }
 
   public ngOnInit() {
 
   }
 
-  public selectMarker(event) {
-    this.selectedMarker = {
-      lat: event.latitude,
-      lng: event.longitude
-    };
+  public selectMarker(event, index) {
+    this.selectedMarker = index + 1;
   }
 
   public addMarker(lat: number, lng: number) {
@@ -36,5 +36,10 @@ export class MapComponent implements OnInit {
     return Math.min(...this.markers.map(marker => marker[coordType]));
   }
 
-
+  public rotateMarker(angle) {
+    const index = this.selectedMarker - 1;
+    const updatedMarker: MarkerInterface = {...this.markers[index]};
+    updatedMarker.icon.rotation = angle;
+    this.markers.splice(index, 1, updatedMarker);
+  }
 }

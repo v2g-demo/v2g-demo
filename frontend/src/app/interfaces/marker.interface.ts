@@ -14,4 +14,5 @@ interface IconInterface {
   strokeColor?: string;
   strokeOpacity?: number;
   strokeWeight?: number;
+  anchor?: any;
 }
