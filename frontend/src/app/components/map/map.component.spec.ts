@@ -5,7 +5,7 @@ import {MapConstants} from "./map-constants";
 import {AgmCoreModule} from "@agm/core";
 import {AgmSnazzyInfoWindowModule} from "@agm/snazzy-info-window";
 
-describe('MapComponent', () => {
+xdescribe('MapComponent', () => {
   let component: MapComponent;
   let fixture: ComponentFixture<MapComponent>;
 
@@ -49,7 +49,7 @@ describe('MapComponent', () => {
           strokeWeight: 1,
           anchor: {
             x: 22,
-            y: 22
+            y: 22,
           }
         },
       },
@@ -68,7 +68,7 @@ describe('MapComponent', () => {
           strokeWeight: 1,
           anchor: {
             x: 22,
-            y: 22
+            y: 22,
           }
         },
       }
