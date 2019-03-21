@@ -18,7 +18,6 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-#  ng lint
     npm run test-headless
     ng e2e
   displayName: 'npm install and tests'
