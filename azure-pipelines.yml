@@ -18,6 +18,13 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
+#  ng lint
+    npm run test-headless
+    ng e2e
+  displayName: 'npm install and tests'
+  workingDirectory: frontend/
+
+- script: |
     ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'ng build --prod'
   workingDirectory: frontend/
