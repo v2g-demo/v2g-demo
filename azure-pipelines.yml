@@ -28,9 +28,12 @@ steps:
   displayName: 'ng build --prod'
   workingDirectory: frontend/
 
-- task: PublishBuildArtifacts@1
+- task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '*'
+- task: PublishBuildArtifacts@1
+  inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
