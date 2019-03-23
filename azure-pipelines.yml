@@ -28,9 +28,9 @@ steps:
   displayName: 'ng build --prod'
   workingDirectory: frontend/
 
-- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
-
 - task: PublishBuildArtifacts@1
   inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**/*'
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
