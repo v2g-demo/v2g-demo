@@ -15,18 +15,32 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    npm run test-headless
-    ng e2e
-  displayName: 'npm install and tests'
-  workingDirectory: frontend/
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    command: install
+    workingDir: frontend/
 
-- script: |
-    ng build --prod
-  displayName: 'ng build --prod'
-  workingDirectory: frontend/
+- task: Npm@1
+  displayName: 'Test Angular'
+  inputs:
+    command: custom
+    customCommand: run test-headless
+    workingDir: frontend/
+
+- task: Npm@1
+  displayName: 'Test e2e'
+  inputs:
+    command: custom
+    customCommand: run e2e
+    workingDir: frontend/
+
+- task: Npm@1
+  displayName: 'Build Angular'
+  inputs:
+    command: custom
+    customCommand: run build -- --prod
+    workingDir: frontend/
 
 - task: CopyFiles@2
   inputs:
