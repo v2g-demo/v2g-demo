@@ -12,6 +12,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
+import { environment } from '../environments/environment';
+
 
 
 // const DEMOS = [
@@ -47,7 +49,7 @@ import { GameSelectorComponent } from './components/game-selector/game-selector.
     AppRoutingModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY'
+      apiKey: environment.googleMapsApiKey
     }),
     AgmSnazzyInfoWindowModule
 
