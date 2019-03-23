@@ -19,34 +19,30 @@ steps:
   displayName: 'npm install'
   inputs:
     command: install
-    workingDir: frontend/
 
 - task: Npm@1
   displayName: 'Test Angular'
   inputs:
     command: custom
     customCommand: run test-headless
-    workingDir: frontend/
 
 - task: Npm@1
   displayName: 'Test e2e'
   inputs:
     command: custom
     customCommand: run e2e
-    workingDir: frontend/
 
 - task: Npm@1
   displayName: 'Build Angular'
   inputs:
     command: custom
     customCommand: run build -- --prod
-    workingDir: frontend/
 
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: 'frontend/dist/frontend/**/*'
+    Contents: 'dist/**/*'
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
