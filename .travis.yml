@@ -1,20 +1,22 @@
-language: node_js
-node_js:
-  - "10"
-dist: trusty
-sudo: required
+matrix:
+  include:
+    - language: java
+      jdk: openjdk11
+      before_script:
+        - cd backend/
 
-addons:
-  chrome: stable
+    - language: node_js
+      node_js: "10"
+      sudo: required
+      addons:
+        chrome: stable
+      before_script:
+        - npm install
+      script:
+        - npm run lint
+        - npm run build --prod
+        - npm run e2e
+        - npm run test-headless
 
-before_script:
-  - npm install
-
-script:
-  - npm run lint
-  - npm run build --prod
-  - npm run e2e
-  - npm run test-headless
-
-after_success:
-  - curl -s https://codecov.io/bash | bash
+      after_success:
+        - curl -s https://codecov.io/bash | bash
