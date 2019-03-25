@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
-import {MapConstants} from "./map-constants";
-import {AgmCoreModule} from "@agm/core";
-import {AgmSnazzyInfoWindowModule} from "@agm/snazzy-info-window";
+import {MapConstants} from './map-constants';
+import {AgmCoreModule} from '@agm/core';
+import {AgmSnazzyInfoWindowModule} from '@agm/snazzy-info-window';
 
 xdescribe('MapComponent', () => {
   let component: MapComponent;
@@ -39,7 +39,7 @@ xdescribe('MapComponent', () => {
         lng: 26.31618,
         alpha: 1,
         icon: {
-          path: MapConstants.MARKERS_ICONS['hospital'],
+          path: MapConstants.MARKERS_ICONS.hospital,
           rotation: 0,
           fillColor: 'black',
           strokeColor: 'black',
@@ -58,7 +58,7 @@ xdescribe('MapComponent', () => {
         lng: 78.58339,
         alpha: 1,
         icon: {
-          path: MapConstants.MARKERS_ICONS['gasStation'],
+          path: MapConstants.MARKERS_ICONS.gasStation,
           rotation: 0,
           fillColor: 'black',
           strokeColor: 'black',

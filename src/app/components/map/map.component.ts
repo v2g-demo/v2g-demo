@@ -1,6 +1,6 @@
 import {ApplicationRef, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MapConstants} from "./map-constants";
-import {MarkerInterface} from "../../interfaces/marker.interface";
+import {MapConstants} from './map-constants';
+import {MarkerInterface} from '../../interfaces/marker.interface';
 
 @Component({
   selector: 'app-map',
