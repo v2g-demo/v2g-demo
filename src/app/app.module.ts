@@ -13,6 +13,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 import { environment } from '../environments/environment';
+import { GameSelectorItemComponent } from './components/game-selector-item/game-selector-item.component';
 
 
 
@@ -43,6 +44,7 @@ import { environment } from '../environments/environment';
     NotFoundComponent,
     MapComponent,
     GameSelectorComponent,
+    GameSelectorItemComponent,
   ],
   imports: [
     BrowserModule,
