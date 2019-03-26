@@ -59,7 +59,7 @@ import {HttpClientModule} from '@angular/common/http';
     AgmSnazzyInfoWindowModule
 
   ],
-  providers: [],
+  providers: [GameDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
