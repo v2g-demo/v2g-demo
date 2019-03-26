@@ -42,12 +42,11 @@ ngbd-table-complete span.ngb-highlight {
   background-color: yellow;
 }
 
-a{
-  text-decoration: none;
-  color: #d9d9d9;
+i {
+  color: black;
+  &:hover{
+    color: white;
+  }
 }
 
-svg{
-  height: 30px;
-  width: 30px;
-}
+
