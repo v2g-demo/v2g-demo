@@ -76,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/user/login").permitAll().antMatchers("/user/get/**").hasRole(Role.USER.toString()).antMatchers("/", "/login/**","/callback/", "/webjars/**", "/error**")
-                .permitAll().anyRequest().authenticated();
+                .permitAll();
 
      http.exceptionHandling().authenticationEntryPoint(new ForbiddenEntryPoint());
       http.apply(new JwtFilterConfiguer(provider));
