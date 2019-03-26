@@ -1,0 +1,7 @@
+.game-selector__wrapper {
+  display: flex;
+  app-game-selector-item {
+    width: 33%;
+    margin: 5px;
+  }
+}
