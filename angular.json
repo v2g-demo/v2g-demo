@@ -29,7 +29,8 @@
             "styles": [
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/snazzy-info-window/dist/snazzy-info-window.css"
+              "./node_modules/snazzy-info-window/dist/snazzy-info-window.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.slim.min.js",

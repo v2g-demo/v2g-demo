@@ -41,3 +41,12 @@ ngbd-table-filtering span.ngb-highlight {
 ngbd-table-complete span.ngb-highlight {
   background-color: yellow;
 }
+
+i {
+  color: black;
+  &:hover{
+    color: white;
+  }
+}
+
+

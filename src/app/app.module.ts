@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { GameSelectorItemComponent } from './components/game-selector-item/game-selector-item.component';
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -47,6 +48,7 @@ import {HttpClientModule} from '@angular/common/http';
     MapComponent,
     GameSelectorComponent,
     GameSelectorItemComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
