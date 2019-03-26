@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GameDataService} from '../../services/game-data.service';
+import {GameSelectorDataInterface} from '../../interfaces/game-selector-data.interface';
 
 @Component({
   selector: 'app-game-selector',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-selector.component.scss']
 })
 export class GameSelectorComponent implements OnInit {
+  public gameSelectorsData: GameSelectorDataInterface[];
 
-  constructor() { }
+  constructor(
+    private gameDataService: GameDataService
+  ) {
+  }
 
-  ngOnInit() {
+  public ngOnInit() {
+    this.getGameSelectorItems();
+  }
+
+  private getGameSelectorItems() {
+    this.gameDataService.gameSelectorsConfigRequest().subscribe((response) => {
+      this.gameSelectorsData = this.gameDataService.parseSelectorsConfigResponse(response);
+    });
   }
 
 }

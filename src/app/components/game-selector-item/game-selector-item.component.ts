@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {GameSelectorDataInterface} from '../../interfaces/game-selector-data.interface';
 
 @Component({
   selector: 'app-game-selector-item',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-selector-item.component.scss']
 })
 export class GameSelectorItemComponent implements OnInit {
-
+  @Input()
+  public gameSelectorItemConfig: GameSelectorDataInterface;
   constructor() { }
 
   ngOnInit() {

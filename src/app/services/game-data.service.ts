@@ -18,7 +18,7 @@ export class GameDataService {
     const url = `${MOCK_DATA}/game-selector-data.json`;
     return this.http.get(url);
   }
-  
+
   public parseSelectorsConfigResponse(data): GameSelectorDataInterface[] {
     return data.map((item) => {
       return {

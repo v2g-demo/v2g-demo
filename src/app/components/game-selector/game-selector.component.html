@@ -1,3 +1,11 @@
-<p>
-  game-selector works!
-</p>
+<section>
+  <div class="container">
+    <h2 class="section-header">Select the game</h2>
+    <div class="game-selector__wrapper" *ngIf="gameSelectorsData">
+      <app-game-selector-item *ngFor="let gameSelectorItem of gameSelectorsData"
+                              [gameSelectorItemConfig]="gameSelectorItem">
+
+      </app-game-selector-item>
+    </div>
+  </div>
+</section>
