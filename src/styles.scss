@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  div {
+    flex-grow: 1;
+  }
+}
 header.navbar {
   background: linear-gradient(135deg, #0143a3, #0273d4);
 }
