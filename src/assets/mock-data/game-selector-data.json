@@ -1,0 +1,23 @@
+[
+  {
+    "region_id": "0001",
+    "region_name": "Frankfurt am Main",
+    "region_map_center": "50.110427,8.672922",
+    "region_users_online": "511",
+    "region_thumb": ""
+  },
+  {
+    "region_id": "0002",
+    "region_name": "Warszawa",
+    "region_map_center": "52.214315,21.047821",
+    "region_users_online": "225",
+    "region_thumb": ""
+  },
+  {
+    "region_id": "0003",
+    "region_name": "Graz",
+    "region_map_center": "47.053074,15.427643",
+    "region_users_online": "1113",
+    "region_thumb": ""
+  }
+]
