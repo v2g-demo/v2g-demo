@@ -14,6 +14,8 @@ import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 import { environment } from '../environments/environment';
 import { GameSelectorItemComponent } from './components/game-selector-item/game-selector-item.component';
+import {GameDataService} from './services/game-data.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -50,6 +52,7 @@ import { GameSelectorItemComponent } from './components/game-selector-item/game-
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsApiKey
     }),
