@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("com/v2gdemo/backend/places")
+@RequestMapping("places")
 public class Controller {
     @Autowired
     private PlacesService placesService;

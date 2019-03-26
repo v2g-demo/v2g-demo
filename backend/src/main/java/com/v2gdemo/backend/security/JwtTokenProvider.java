@@ -29,7 +29,7 @@ public class JwtTokenProvider {
      * THIS IS NOT A SECURE PRACTICE! For simplicity, we are storing a static key here. Ideally, in a
      * microservices environment, this key would be kept on a com.v2gdemo.backend.config-server.
      */
-    @Value("${com.v2gdemo.backend.security.jwt.token.secret-key:secret-key}")
+    @Value("${com.v2gdemo.backend.security.jwt.token.secret-key}")
     private String secretKey;
 
     @Value("${com.v2gdemo.backend.security.jwt.token.expire-length:3600000}")
