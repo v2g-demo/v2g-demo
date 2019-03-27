@@ -26,4 +26,4 @@ The gamer is successful man, who lives in a house with a garage and who has a el
 
 ## Diagrams
 
-![seq1]((uml/seq1.png?raw=true)
+![seq1](uml/seq1.png?raw=true)
