@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
+/backend/target
 /dist
 /tmp
 /out-tsc
@@ -15,13 +16,15 @@ chrome-profiler-events.json
 speed-measure-plugin.json
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
 .c9/
 *.launch
 .settings/
 *.sublime-workspace
+*.iml
+*.orig
 
 # IDE - VSCode
 .vscode/*
