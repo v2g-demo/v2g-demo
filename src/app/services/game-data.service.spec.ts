@@ -3,6 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {GameDataService} from './game-data.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {MOCK_DATA} from '../api/dev.api';
+import {GameSelectorDataInterface} from '../interfaces/game-selector-data.interface';
 
 describe('GameDataService', () => {
   let service: GameDataService;
@@ -53,5 +54,28 @@ describe('GameDataService', () => {
     const req = httpTestingController.expectOne(`${MOCK_DATA}/game-selector-data.json`);
     expect(req.request.method).toBe('GET');
     req.flush(dummyData);
+  });
+
+  it('should be equal', () => {
+    const dummyData = [
+      {
+        region_id: '0003',
+        region_name: 'Linz',
+        region_map_center: '48.306792,14.285954',
+        region_users_online: '1113',
+        region_thumb: './assets/img/linz.jpg'
+      }
+    ];
+    const parsedDummyData: GameSelectorDataInterface[] = [
+      {
+        regionId: '0003',
+        regionName: 'Linz',
+        regionMapCenter: ['48.306792', '14.285954'],
+        regionUsersOnline: '1113',
+        regionThumb: './assets/img/linz.jpg'
+      }
+    ];
+    const parsedData = service.parseSelectorsConfigResponse(dummyData);
+    expect(JSON.stringify(parsedData)).toEqual(JSON.stringify(parsedDummyData));
   });
 });
