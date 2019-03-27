@@ -17,7 +17,6 @@ import { GameSelectorItemComponent } from './components/game-selector-item/game-
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
-import { MapSidebarComponent } from './components/map-sidebar/map-sidebar.component';
 import { GameComponent } from './components/game/game.component';
 import { GameSidebarComponent } from './components/game-sidebar/game-sidebar.component';
 
@@ -52,7 +51,6 @@ import { GameSidebarComponent } from './components/game-sidebar/game-sidebar.com
     GameSelectorComponent,
     GameSelectorItemComponent,
     AboutComponent,
-    MapSidebarComponent,
     GameComponent,
     GameSidebarComponent,
   ],
