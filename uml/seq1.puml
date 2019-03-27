@@ -1,0 +1,29 @@
+@startuml
+
+actor User
+participant "Web or Mobile app" as WebApp
+collections Backend
+
+User-> WebApp : Open main page
+WebApp->Backend: GetMapList()
+WebApp-->User: show game maps selector
+
+User->WebApp: select game map
+WebApp->Backend: GetGameData()
+WebApp->Backend: GetObjects(filter)
+WebApp-->User: show game data in top panel
+WebApp-->User: show objects on the map
+
+group WebSocket
+WebApp->Backend: subscribeObjectChanges()
+WebApp->Backend: subscribeQuests()
+Backend-->WebApp: push data
+
+end
+
+User->WebApp: select object
+WebApp->Backend: GetObjectDetails()
+WebApp-->User: show object details in sidebar
+
+
+@enduml

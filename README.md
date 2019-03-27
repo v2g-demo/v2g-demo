@@ -23,3 +23,7 @@ The gamer is successful man, who lives in a house with a garage and who has a el
 
 Результаты сохраняются в турнирную таблицу
 Игрок может видеть прогресс других игроков в реальном времени и наблюдать за их действиями.
+
+## Diagrams
+
+![seq1]((uml/seq1.png?raw=true)
