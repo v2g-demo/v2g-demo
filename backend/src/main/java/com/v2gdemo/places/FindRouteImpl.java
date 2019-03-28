@@ -1,4 +1,4 @@
-package com.v2gdemo.backend.places;
+package com.v2gdemo.places;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

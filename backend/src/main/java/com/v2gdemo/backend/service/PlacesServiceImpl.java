@@ -3,8 +3,8 @@ package com.v2gdemo.backend.service;
 import com.v2gdemo.backend.database.ChargerDao;
 
 import com.v2gdemo.backend.entity.ChargeStation;
-import com.v2gdemo.backend.places.FindPlaceObject;
-import com.v2gdemo.backend.places.FindRouteObject;
+import com.v2gdemo.places.FindPlaceObject;
+import com.v2gdemo.places.FindRouteObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

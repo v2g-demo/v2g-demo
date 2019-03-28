@@ -1,9 +1,9 @@
 package com.v2gdemo.backend.config;
 
-import com.v2gdemo.backend.places.FindPlaceImpl;
-import com.v2gdemo.backend.places.FindPlaceObject;
-import com.v2gdemo.backend.places.FindRouteImpl;
-import com.v2gdemo.backend.places.FindRouteObject;
+import com.v2gdemo.places.FindPlaceImpl;
+import com.v2gdemo.places.FindPlaceObject;
+import com.v2gdemo.places.FindRouteImpl;
+import com.v2gdemo.places.FindRouteObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.v2gdemo.backend.places;
+package com.v2gdemo.places;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
