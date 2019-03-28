@@ -1,75 +1,107 @@
 version: '3.7'
 services:
 
-  sample:
-    image: bronin/java-sample-microservice:latest
+  redis:
+    image: redis:5-alpine
+    restart: always
     ports:
-      - "8080:8080"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: on-failure
+      - 6379:6379
 
-  grafana:
-    image: grafana/grafana:5.4.2
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=pass
-      - GF_EXPLORE_ENABLED=true
-    volumes:
-      - ./monitor/grafana/provisioning:/etc/grafana/provisioning
-      - ./monitor/grafana/config.ini:/etc/grafana/config.ini
-      - ./monitor/grafana/dashboards:/var/lib/grafana/dashboards
-#    depends_on:
-#      - prometheus
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
-      - "3000:3000"
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      PMA_PORT: 3306
+      PMA_HOST: mysql
+      PMA_USER: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+    - /sessions
+
+  # sample:
+  #   image: bronin/java-sample-microservice:latest
+  #   ports:w
+  #     - "8080:8080"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #     start_period: 30s
+  #   restart: on-failure
+
+#  grafana:
+#    image: grafana/grafana:5.4.2
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=pass
+#      - GF_EXPLORE_ENABLED=true
+#    volumes:
+#      - ./monitor/grafana/provisioning:/etc/grafana/provisioning
+#      - ./monitor/grafana/config.ini:/etc/grafana/config.ini
+#      - ./monitor/grafana/dashboards:/var/lib/grafana/dashboards
+#    #    depends_on:
+#    #      - prometheus
+#    ports:
+#      - "3000:3000"
 
   # elastic and kibana are optional here,
   # but they provide more powerful  search and analysis than Jaeger's UI (augments it actually).
-  elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:6.5.4"
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: "single-node"
-      xpack.security.enabled: "false"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200/_cat/health?h=st"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    # restart: on-failure
-
-  kibana:
-    image: "docker.elastic.co/kibana/kibana:6.5.4"
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-
-  jaeger:
-    image: "jaegertracing/all-in-one:1.8"
-    ports:
-      - "6831:6831/udp"
-      - "16686:16686"
-      - "16687:16687"
-    environment:
-      SPAN_STORAGE_TYPE: "elasticsearch"
-      ES_SERVER_URLS: "http://elasticsearch:9200"
-      ES_TAGS_AS_FIELDS: "true"
-    depends_on:
-      - elasticsearch
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:16687/"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: on-failure
-
+#  elasticsearch:
+#    image: "docker.elastic.co/elasticsearch/elasticsearch:6.5.4"
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    environment:
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#      discovery.type: "single-node"
+#      xpack.security.enabled: "false"
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:9200/_cat/health?h=st"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+#      start_period: 30s
+#    # restart: on-failure
+#
+#  kibana:
+#    image: "docker.elastic.co/kibana/kibana:6.5.4"
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
+#
+#  jaeger:
+#    image: "jaegertracing/all-in-one:1.8"
+#    ports:
+#      - "6831:6831/udp"
+#      - "16686:16686"
+#      - "16687:16687"
+#    environment:
+#      SPAN_STORAGE_TYPE: "elasticsearch"
+#      ES_SERVER_URLS: "http://elasticsearch:9200"
+#      ES_TAGS_AS_FIELDS: "true"
+#    depends_on:
+#      - elasticsearch
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:16687/"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+#      start_period: 30s
+#    restart: on-failure
