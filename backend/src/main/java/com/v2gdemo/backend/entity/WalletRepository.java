@@ -6,4 +6,4 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 @Repository
-public interface ObjectRepository extends CrudRepository<Object, Long> { }
+public interface WalletRepository extends CrudRepository<Wallet, Long> { }

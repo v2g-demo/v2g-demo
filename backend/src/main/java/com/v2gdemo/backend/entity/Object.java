@@ -29,6 +29,9 @@ public class Object {
     @JoinColumn(name="owner_id")
     private Character owner;
 
+    @OneToOne(mappedBy = "object")
+    private Wallet wallet;
+
     @NotBlank
     private String name;
 
