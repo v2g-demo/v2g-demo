@@ -1,6 +1,6 @@
 package com.v2gdemo.backend.security;
 
-import com.v2gdemo.backend.entity.Role;
+import com.v2gdemo.backend.entity.User;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 @Service
 public class JwtTokenProvider {
     /**
@@ -44,10 +45,10 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String username, List<Role> roles) {
+    public String createToken(String username, User.Role role) {
 
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("auth", roles.stream().map(s -> new SimpleGrantedAuthority(s.toString())).filter(Objects::nonNull).collect(Collectors.toList()));
+        claims.put("auth", role);
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);

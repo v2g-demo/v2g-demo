@@ -8,8 +8,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication(scanBasePackages = "com.v2gdemo.backend")
 @Configuration
-@EnableWebMvc
-@EnableJpaRepositories
+//@EnableWebMvc
+//@EnableJpaRepositories
 public class Application {
 
 

@@ -6,6 +6,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.PlacesApi;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.FindPlaceFromText;
+import com.google.maps.model.LatLng;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,10 +20,13 @@ public class Places {
                 .build();
     }
 
-    public void GetChargers() {
+    public String GetChargers() {
+        LatLng location = new LatLng(52.520008, 13.404954);
+
         FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "car charger",
                 FindPlaceFromTextRequest.InputType.TEXT_QUERY)
                 .fields(
+                        FindPlaceFromTextRequest.FieldMask.PLACE_ID,
                         FindPlaceFromTextRequest.FieldMask.PHOTOS,
                         FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
                         FindPlaceFromTextRequest.FieldMask.ID,
@@ -30,21 +34,21 @@ public class Places {
                         //FindPlaceFromTextRequest.FieldMask.RATING,
                         //FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
                         FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-                .locationBias(new FindPlaceFromTextRequest.LocationBiasIP());
+                .locationBias(new FindPlaceFromTextRequest.LocationBiasCircular(location,50000));
         try {
             FindPlaceFromText results = req.await();
             System.out.println( results.toString());
+            return results.toString();
             // Handle successful request.
         } catch (Exception e) {
             // Handle error
             System.out.println(e.toString());
         }
+        return "";
     }
 
-    public void GetRoute() {
+    public String GetRoute() {
         DirectionsResult res = DirectionsApi.getDirections(context, "улица свободы", "химки").awaitIgnoreError();
-        System.out.println(res.toString());
-
+        return res.toString();
     }
-
 }

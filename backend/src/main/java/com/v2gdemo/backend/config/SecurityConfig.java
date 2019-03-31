@@ -2,7 +2,6 @@ package com.v2gdemo.backend.config;
 
 
 import com.v2gdemo.backend.dao.UserDao;
-import com.v2gdemo.backend.entity.Role;
 import com.v2gdemo.backend.entity.User;
 import com.v2gdemo.backend.security.ForbiddenEntryPoint;
 import com.v2gdemo.backend.security.JwtFilterConfiguer;
@@ -24,7 +23,7 @@ import org.springframework.web.context.request.RequestContextListener;
 
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtTokenProvider provider;
@@ -57,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 user1.setId(id);
                 user1.setLogin((String) map.get("name"));
                 user1.setEmail((String) map.get("email"));
-                user1.getRoles().add(Role.USER);
+                user1.setRole(User.Role.PLAYER);
                 userDao.save(user1);
                 return user1;
             });
@@ -75,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        // http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/user/login").permitAll().antMatchers("/user/get/**").hasRole(Role.USER.toString()).antMatchers("/", "/login/**","/callback/", "/webjars/**", "/error**")
+                .antMatchers("/user/login").permitAll().antMatchers("/user/get/**").hasRole(User.Role.PLAYER.toString()).antMatchers("/", "/login/**","/callback/", "/webjars/**", "/error**")
                 .permitAll();
 
      http.exceptionHandling().authenticationEntryPoint(new ForbiddenEntryPoint());
