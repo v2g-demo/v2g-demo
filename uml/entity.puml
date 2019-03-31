@@ -1,0 +1,20 @@
+@startuml
+
+class GameMap {
+name
+geometry
+restriction
+}
+
+
+abstract class MapObject {
+placeId
+formattedAddress
+name
+icons
+photos
+}
+
+
+
+@enduml

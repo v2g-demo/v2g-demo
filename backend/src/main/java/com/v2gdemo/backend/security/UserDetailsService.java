@@ -20,7 +20,7 @@ public class UserDetailsService implements org.springframework.security.core.use
           if (user != null){
               userBuilder = org.springframework.security.core.userdetails.User.withUsername(s);
               userBuilder.password(user.getPassword());
-              userBuilder.roles(user.getRoles().toString());
+              userBuilder.roles(user.getRole().toString());
           }
         return userBuilder.build();
     }

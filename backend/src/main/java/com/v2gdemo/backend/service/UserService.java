@@ -2,7 +2,6 @@ package com.v2gdemo.backend.service;
 
 import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.dto.UserDto;
-import com.v2gdemo.backend.entity.Role;
 import com.v2gdemo.backend.entity.User;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import com.v2gdemo.backend.security.JwtTokenProvider;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -30,7 +28,7 @@ public class UserService {
         User user = userDao.findByLogin(username);
 try {
     manager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-  return   jwtTokenProvider.createToken(user.getLogin(),user.getRoles().stream().collect(Collectors.toList()));
+  return   jwtTokenProvider.createToken(user.getLogin(),user.getRole());
 } catch (AuthenticationException ex){
 
     throw  new ServerException("Wrong data!");
@@ -45,11 +43,9 @@ try {
         newUser.setId(UUID.randomUUID().toString());
         newUser.setLogin(user.getUsername());
         newUser.setEmail(user.getEmail());
-        newUser.setLocation(user.getLocation());
         newUser.setPassword(encoder.encode(user.getPassword()));
         newUser.setName(user.getName());
-        newUser.setSurname(user.getSurname());
-        newUser.getRoles().add(Role.USER);
+        newUser.setRole(User.Role.PLAYER);
         userDao.save(newUser);
 
     }
