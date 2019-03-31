@@ -15,47 +15,48 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "objects")
-public class MapObject {
+public class Object {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="map_id")
+    private Map map;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="owner_id")
+    private Character owner;
+
     @NotBlank
     private String name;
 
     @NotBlank
-    private String placeId;
+    private String placeId; // google maps
 
     private String formattedAddress;
-    private String reference; //wallet reference
+    private String reference; //wallet payment system reference
 
     @NotBlank
     @Enumerated(EnumType.STRING)
     private Type type;
     public enum Type {
-        Vehicle,
-        House,
-        Charger,
-        Office
+        VEHICLE,
+        HOUSE,
+        CHARGER,
+        OFFICE
     }
 
 
     private Location location;
-
+    private Integer rotationAngle;
     @Data
     @Embeddable
     public static class Location {
-        private Long latitude;
-        private Long longitude;
-        private Integer angle;
+        private Double latitude;
+        private Double longitude;
     }
-
-//    @NotBlank
-//    private Long latitude;
-//
-//    @NotBlank
-//    private Long longitude;
 
     @CreationTimestamp
     private Date createdAt;

@@ -4,4 +4,4 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MapObjectRepository extends CrudRepository<MapObject, Long> { }
+public interface ObjectRepository extends CrudRepository<Object, Long> { }

@@ -121,8 +121,5 @@ public class FindPlaceImpl implements FindPlaceObject {
         return mapper.readTree(details);
 
 
-
-
-
     }
 }

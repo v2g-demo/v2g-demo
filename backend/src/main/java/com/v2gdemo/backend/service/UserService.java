@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -44,10 +43,8 @@ try {
         newUser.setId(UUID.randomUUID().toString());
         newUser.setLogin(user.getUsername());
         newUser.setEmail(user.getEmail());
-        newUser.setLocation(user.getLocation());
         newUser.setPassword(encoder.encode(user.getPassword()));
         newUser.setName(user.getName());
-        newUser.setSurname(user.getSurname());
         newUser.setRole(User.Role.PLAYER);
         userDao.save(newUser);
 

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @Column(length = 100)
     private String id;
@@ -16,15 +18,16 @@ public class User {
     private String login;
     @Column(name = "name")
     private String name;
-    @Column(name = "surname")
-    private String surname;
+
     @Column(name = "password",length = 500)
     @JsonIgnore
     private String password;
-    private String location;
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Character> characters;
 
 
     //@ElementCollection(fetch = FetchType.EAGER)
