@@ -26,5 +26,3 @@ public class RespawnPoint {
     @NotBlank
     private Double longitude;
 }
-
-   // respawn point
