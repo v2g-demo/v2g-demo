@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,14 +31,16 @@ public class Map {
     @NotBlank
     private String name;
 
-    @NotBlank
+    @NotNull
     private Integer zoom;
 
-    @NotBlank
+    @NotNull
     private Location center;
 
     @Data
     @Embeddable
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Location {
         private Double latitude;
         private Double longitude;
@@ -48,6 +51,8 @@ public class Map {
 
     @Data
     @Embeddable
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Bounds {
         private Double north;
         private Double west;

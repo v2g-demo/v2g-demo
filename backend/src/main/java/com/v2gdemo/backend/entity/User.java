@@ -30,7 +30,7 @@ public class User {
     private List<Character> characters;
 
 
-    //@ElementCollection(fetch = FetchType.EAGER)
+  //@ElementCollection(fetch = FetchType.EAGER) 1 user = 1 role (no need for multiply roles)
     //@CollectionTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Role role;
