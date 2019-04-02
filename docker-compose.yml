@@ -1,4 +1,7 @@
 version: '3.7'
+# volumes:
+#  dbdata1:
+
 services:
 
   redis:
@@ -11,28 +14,54 @@ services:
     image: mysql:8
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    # volumes:
+    #   - dbdata1:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
+      MYSQL_DATABASE: v2gdemo
+      MYSQL_USER: v2gdemo
+      MYSQL_PASSWORD: v2gdemo
       MYSQL_ROOT_PASSWORD: pass
-      PMA_PORT: 3306
-      PMA_HOST: mysql
-      PMA_USER: root
+      # PMA_PORT: 3306
+      # PMA_HOST: mysql
+      # PMA_USER: root
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+  v2gdemo:
+    image: bronin/v2gdemo:latest
+    restart: always
     links:
       - mysql
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
-    restart: always
+      - redis
     ports:
-      - 8081:80
-    volumes:
-    - /sessions
+      - 8080:8080
+    environment:
+      V2GDEMO_MYSQL_DB_HOST: mysql
+      V2GDEMO_MYSQL_DB_PORT: 3306
+      V2GDEMO_MYSQL_DB_USERNAME: root
+      V2GDEMO_MYSQL_DB_PORT: pass
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/profile"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: on-failure
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   links:
+  #     - mysql
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=mysql
+  #     - PMA_PORT=3306
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   volumes:
+  #   - /sessions
 
   # sample:
   #   image: bronin/java-sample-microservice:latest
