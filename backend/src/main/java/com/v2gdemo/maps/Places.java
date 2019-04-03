@@ -10,6 +10,8 @@ import com.google.maps.model.LatLng;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 @Configuration
 public class Places {
     //private String key;
@@ -20,13 +22,10 @@ public class Places {
                 .build();
     }
 
-    public String GetChargers() {
-        LatLng location = new LatLng(52.520008, 13.404954);
-
+    public String GetChargers(LatLng southWest, LatLng northEast) {
         FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "car charger",
                 FindPlaceFromTextRequest.InputType.TEXT_QUERY)
                 .fields(
-                        FindPlaceFromTextRequest.FieldMask.PLACE_ID,
                         FindPlaceFromTextRequest.FieldMask.PHOTOS,
                         FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
                         FindPlaceFromTextRequest.FieldMask.ID,
@@ -34,21 +33,22 @@ public class Places {
                         //FindPlaceFromTextRequest.FieldMask.RATING,
                         //FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
                         FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-                .locationBias(new FindPlaceFromTextRequest.LocationBiasCircular(location,50000));
+                .locationBias(new FindPlaceFromTextRequest.LocationBiasRectangular(southWest, northEast));
         try {
             FindPlaceFromText results = req.await();
-            System.out.println( results.toString());
-            return results.toString();
+            return Arrays.toString(results.candidates);
             // Handle successful request.
         } catch (Exception e) {
             // Handle error
             System.out.println(e.toString());
+            return null;
         }
-        return "";
     }
 
-    public String GetRoute() {
+    public void GetRoute() {
         DirectionsResult res = DirectionsApi.getDirections(context, "улица свободы", "химки").awaitIgnoreError();
-        return res.toString();
+        System.out.println(res.toString());
+
     }
+
 }

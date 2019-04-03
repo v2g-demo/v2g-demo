@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -35,13 +36,13 @@ public class Object {
     @NotBlank
     private String name;
 
-    @NotBlank
+    //@NotBlank commented because of testing
     private String placeId; // google maps
 
     private String formattedAddress;
     private String reference; //wallet payment system reference
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Type type;
     public enum Type {
@@ -55,6 +56,8 @@ public class Object {
     private Location location;
     private Integer rotationAngle;
     @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Embeddable
     public static class Location {
         private Double latitude;
