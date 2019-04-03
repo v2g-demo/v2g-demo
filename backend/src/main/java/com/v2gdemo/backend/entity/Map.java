@@ -24,6 +24,9 @@ public class Map {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
     private List<Character> characters;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
+    private List<RespawnPoint> respawnPoints;
+
     @NotBlank
     private String name;
 
