@@ -50,13 +50,14 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
         object.setLocation(new Object.Location(52.522703+multiplicator, 13.413916+multiplicator));
         object.setName("Allego num"+i);
-        object.setPlaceId(null);
+        if (i == 2) object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM"); else object.setPlaceId("ChIJlQn4WGa5dUcRDT6kUOs8dtM");
         object.setReference(null);
         object.setRotationAngle(0);
         object.setType(Object.Type.CHARGER);
         object.setMap(map);
         objectRepository.save(object);
       }
+
 
 
        Wallet wallet = new Wallet();

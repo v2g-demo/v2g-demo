@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @Configuration
-//@EnableWebMvc
+@EnableWebMvc
 @EnableJpaRepositories
 public class Application {
 

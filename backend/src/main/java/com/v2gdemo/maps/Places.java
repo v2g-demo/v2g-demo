@@ -30,6 +30,7 @@ public class Places {
                         FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
                         FindPlaceFromTextRequest.FieldMask.ID,
                         FindPlaceFromTextRequest.FieldMask.NAME,
+                        FindPlaceFromTextRequest.FieldMask.PLACE_ID,
                         //FindPlaceFromTextRequest.FieldMask.RATING,
                         //FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
                         FindPlaceFromTextRequest.FieldMask.GEOMETRY)
