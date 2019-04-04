@@ -1,9 +1,15 @@
+addons:
+  sonarcloud:
+    organization: "v2g-demo"
+
 matrix:
   include:
     - language: java
       jdk: openjdk11
       before_script:
         - cd backend/
+      script:
+        - sonar-scanner
 
     - language: node_js
       node_js: "10"
