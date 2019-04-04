@@ -1,6 +1,7 @@
 addons:
   sonarcloud:
     organization: "v2g-demo"
+    projectKey: "v2g-demo_v2g-demo"
 
 matrix:
   include:
