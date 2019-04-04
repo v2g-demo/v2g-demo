@@ -13,6 +13,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+
 
 @RequiredArgsConstructor
 @Component
@@ -22,6 +24,8 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
     private  CharacterRepository charRepository;
  private UserDao userDao;
  private ObjectRepository objectRepository;
+
+
  private MapRepository mapRepository;
     @Autowired
   public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
@@ -29,6 +33,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
     this.userDao = userDao;
     this.objectRepository =  objectRepository;
     this.mapRepository = mapRepository;
+
   }
     public void onApplicationEvent(ApplicationReadyEvent event) {
         System.out.println("42");
@@ -36,7 +41,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
             return;
      }
 
-       Character character = new Character();
+
 
 
        Map map = new Map();
@@ -44,7 +49,17 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
        map.setZoom(5);
        map.setName("Berlin");
       mapRepository.save(map);
-      for (int i =0;i<10;i++) {
+
+User user = new User();
+user.setId("someid");
+user.setName("Somename");
+user.setLogin("log");
+user.setPassword("passwords"
+);
+userDao.save(user);
+
+
+      for (int i =0;i<3;i++) {
         Object object = new Object();
         int multiplicator  = i /100;
         object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
@@ -57,12 +72,20 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         object.setMap(map);
         objectRepository.save(object);
       }
+      Object object = new Object();
+      object.setMap(map);
+      object.setType(Object.Type.VEHICLE);
+      object.setName("my car");
+      object.setPlaceId("places");
 
 
+      Character character = new Character();
+      character.setUser(user);
+      character.setMap(map);
+      character.setName("Somename");
+      object.setOwner(character);
 
-       Wallet wallet = new Wallet();
-
-
+      objectRepository.save(object);
 
     }
 }
