@@ -39,7 +39,7 @@ private TaskRepository taskRepository;
        Object car =  character.getObjects().stream().filter( (o) ->{
          return o.getType().equals(Object.Type.VEHICLE);
         }).findAny().get();
-       int rand = new Random().nextInt(3);
+       int rand = new Random().nextInt(manfctr.size());
       Object randomBuilding = manfctr.get(rand);
       Task task = new Task();
       task.setCar(car);
