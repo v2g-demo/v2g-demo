@@ -9,8 +9,8 @@ matrix:
       jdk: openjdk11
       before_script:
         - cd backend/
-      script:
-        - sonar-scanner
+#      script:
+#        - sonar-scanner
 
     - language: node_js
       node_js: "10"
