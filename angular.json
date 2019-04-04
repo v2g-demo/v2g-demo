@@ -29,6 +29,7 @@
             "styles": [
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/snazzy-info-window/dist/snazzy-info-window.css",
               "./node_modules/font-awesome/css/font-awesome.css"
             ],

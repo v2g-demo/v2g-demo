@@ -27,26 +27,26 @@ services:
       # PMA_HOST: mysql
       # PMA_USER: root
 
-  v2gdemo:
-    image: bronin/v2gdemo:latest
-    restart: always
-    links:
-      - mysql
-      - redis
-    ports:
-      - 8080:8080
-    environment:
-      V2GDEMO_MYSQL_DB_HOST: mysql
-      V2GDEMO_MYSQL_DB_PORT: 3306
-      V2GDEMO_MYSQL_DB_USERNAME: root
-      V2GDEMO_MYSQL_DB_PORT: pass
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/profile"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: on-failure
+  # v2gdemo:
+  #   image: bronin/v2gdemo:latest
+  #   restart: always
+  #   links:
+  #     - mysql
+  #     - redis
+  #   ports:
+  #     - 8080:8080
+  #   environment:
+  #     V2GDEMO_MYSQL_DB_HOST: mysql
+  #     V2GDEMO_MYSQL_DB_PORT: 3306
+  #     V2GDEMO_MYSQL_DB_USERNAME: root
+  #     V2GDEMO_MYSQL_DB_PORT: pass
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8080/profile"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #     start_period: 30s
+  #   restart: on-failure
 
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin

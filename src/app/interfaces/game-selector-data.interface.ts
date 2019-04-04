@@ -1,5 +1,6 @@
 export interface GameSelectorDataInterface {
-  regionId: string;
+  id: number;
+  name: string;
   regionName: string;
   regionMapCenter: string[];
   regionUsersOnline: string;

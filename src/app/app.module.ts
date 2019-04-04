@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { AgmCoreModule } from '@agm/core';
@@ -17,6 +16,9 @@ import { GameSelectorItemComponent } from './components/game-selector-item/game-
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
+import {AuthGuardService} from './services/auth-guard.service';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.component';
 
 
 
@@ -43,25 +45,26 @@ import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
     NotFoundComponent,
     MapComponent,
     GameSelectorComponent,
     GameSelectorItemComponent,
     AboutComponent,
+    LefleatMapComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    LeafletModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsApiKey
     }),
     AgmSnazzyInfoWindowModule
 
   ],
-  providers: [GameDataService],
+  providers: [GameDataService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
