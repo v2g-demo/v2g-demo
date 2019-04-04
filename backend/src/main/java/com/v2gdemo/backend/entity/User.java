@@ -2,6 +2,7 @@ package com.v2gdemo.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "users")
+@EqualsAndHashCode(exclude = "character")
 public class User {
 
     @Id

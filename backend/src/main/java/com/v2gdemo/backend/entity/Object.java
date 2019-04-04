@@ -1,19 +1,22 @@
 package com.v2gdemo.backend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "objects")
 public class Object {
@@ -21,16 +24,22 @@ public class Object {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+ @OneToMany( fetch = FetchType.EAGER,mappedBy = "car")
+  private Set<Task> carsInTask;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="map_id")
     private Map map;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="owner_id")
     private Character owner;
 
-    @OneToOne(mappedBy = "object")
+   @OneToMany(fetch = FetchType.EAGER,mappedBy = "to")
+  private Set<Task> tasks;
+
+
+  @OneToOne(mappedBy = "object")
     private Wallet wallet;
 
     @NotBlank
