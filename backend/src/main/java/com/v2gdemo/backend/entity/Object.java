@@ -27,7 +27,7 @@ public class Object {
  @OneToMany( fetch = FetchType.EAGER,mappedBy = "car")
   private Set<Task> carsInTask;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="map_id")
     private Map map;
 

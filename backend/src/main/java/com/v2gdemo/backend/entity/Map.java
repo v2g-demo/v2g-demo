@@ -19,7 +19,7 @@ public class Map {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "map")
     private List<Object> objects;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")

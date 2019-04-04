@@ -30,15 +30,19 @@ private TaskRepository taskRepository;
 
   @Scheduled(fixedDelay = DELAY)
   public void createRandomTask(){
-    List<Object> objects = LettuceLists.newList( objectRepository.findAll());
-    List<Object> manfctr = objects.stream().filter((ob)->{
-      return !ob.getType().equals(Object.Type.VEHICLE);
-    }).collect(Collectors.toList());
+
+    List<Object> objects = LettuceLists.newList(objectRepository.findAll());
+
     List<Character> characters = LettuceLists.newList(characterRepository.findAll());
     for (Character character :characters ){
        Object car =  character.getObjects().stream().filter( (o) ->{
          return o.getType().equals(Object.Type.VEHICLE);
         }).findAny().get();
+      List<Object> manfctr = objects.stream().filter((ob)->{
+        return !ob.getType().equals(Object.Type.VEHICLE);
+      }).filter((ob)->{
+        return ob.getMap().getId().equals(car.getMap().getId());
+      }).collect(Collectors.toList());
        int rand = new Random().nextInt(manfctr.size());
       Object randomBuilding = manfctr.get(rand);
       Task task = new Task();
