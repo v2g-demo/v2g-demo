@@ -1,8 +1,8 @@
 export interface GameSelectorDataInterface {
-  id: number;
+  id: string;
   name: string;
-  regionName: string;
-  regionMapCenter: string[];
-  regionUsersOnline: string;
-  regionThumb: string;
+  usersOnline: number;
+  latitude: number;
+  longitude: number;
+  zoom: number;
 }

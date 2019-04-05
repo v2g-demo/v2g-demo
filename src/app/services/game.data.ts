@@ -20,17 +20,6 @@ export class GameData {
   priceHistory: number[];
   consumptionHistory: number[];
   topPlayers: number[]; // player ids
-
-
-
-  // isOnline: boolean;
-  // currentFirmvare?: string = '';
-  // currentFirmvareName?: string;
-  // firmwares: FirmwareModel[] = [];
-  // sensors?: SensorModel[] = [];
-  // lastSeen?: string;
-  // redlist?: string;
-
 }
 
 export class Wallet {

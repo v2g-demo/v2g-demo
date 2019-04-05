@@ -1,5 +1,5 @@
 {
-  "name": "V2G-demo-frontend",
+  "name": "frontend",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -40,7 +40,7 @@
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/cli": "~7.3.5",
     "@angular/compiler-cli": "~7.2.0",
-    "@angular/language-service": "~7.2.0",
+    "@angular/language-service": "^7.2.12",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/leaflet": "^1.4.3",

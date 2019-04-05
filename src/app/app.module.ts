@@ -12,7 +12,6 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 import { environment } from '../environments/environment';
-import { GameSelectorItemComponent } from './components/game-selector-item/game-selector-item.component';
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
@@ -48,7 +47,6 @@ import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.compon
     NotFoundComponent,
     MapComponent,
     GameSelectorComponent,
-    GameSelectorItemComponent,
     AboutComponent,
     LefleatMapComponent,
   ],

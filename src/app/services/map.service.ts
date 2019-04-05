@@ -1,18 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {interval, Observable} from 'rxjs';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/internal/operators/tap';
-import {flatMap} from 'rxjs/operators';
+import {GameSelectorDataInterface} from '../interfaces/game-selector-data.interface';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MapService {
 
   constructor(private http: HttpClient) {
   }
 
-  getMaps(): Observable<Object> {
+  getMaps(): Observable<any> {
     const command = environment.apiUrl + '/maps';
     return this.http.get(command).pipe(
       tap( // Log the result or error
@@ -29,5 +31,18 @@ export class MapService {
   //
   //
   // }
+
+  public parseMapsData(data): GameSelectorDataInterface[] {
+    return data._embedded.maps.map((item) => {
+      return {
+        id: item.id,
+        name: item.name,
+        latitude: item.center.latitude,
+        longitude: item.center.longitude,
+        zoom: 5// item.zoom
+      };
+    });
+  }
+
 }
 

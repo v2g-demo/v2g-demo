@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GameSelectorComponent } from './game-selector.component';
-import {GameSelectorItemComponent} from '../game-selector-item/game-selector-item.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {GameDataService} from '../../services/game-data.service';
@@ -14,7 +13,6 @@ describe('GameSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameSelectorComponent, GameSelectorItemComponent ],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
@@ -27,16 +25,4 @@ describe('GameSelectorComponent', () => {
     service = TestBed.get(GameDataService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-
-
-  it('should be truthy', () => {
-    component.ngOnInit();
-    // @ts-ignore
-    const gameSelectorsData: GameSelectorDataInterface[];
-    expect(component.gameSelectorsData).toBe(gameSelectorsData);
-  });
 });

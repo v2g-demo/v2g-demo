@@ -48,20 +48,20 @@ services:
   #     start_period: 30s
   #   restart: on-failure
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: phpmyadmin
-  #   links:
-  #     - mysql
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=mysql
-  #     - PMA_PORT=3306
-  #   restart: always
-  #   ports:
-  #     - 8081:80
-  #   volumes:
-  #   - /sessions
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+    - /sessions
 
   # sample:
   #   image: bronin/java-sample-microservice:latest

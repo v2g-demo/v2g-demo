@@ -1,0 +1,85 @@
+{
+  "geocoded_waypoints" : [
+    {
+      "geocoder_status" : "OK",
+      "place_id" : "ChIJlQn4WGa5dUcRDT6kUOs8dtM",
+      "types" : [ "establishment", "point_of_interest" ]
+    },
+    {
+      "geocoder_status" : "OK",
+      "place_id" : "ChIJlQn4WGa5dUcRDT6kUOs8dtM",
+      "types" : [ "establishment", "point_of_interest" ]
+    }
+  ],
+  "routes" : [
+    {
+      "bounds" : {
+        "northeast" : {
+          "lat" : 48.4042377,
+          "lng" : 12.7651785
+        },
+        "southwest" : {
+          "lat" : 48.4042377,
+          "lng" : 12.7651785
+        }
+      },
+      "copyrights" : "Map data ©2019 GeoBasis-DE/BKG (©2009), Google",
+      "legs" : [
+        {
+          "distance" : {
+            "text" : "1 m",
+            "value" : 0
+          },
+          "duration" : {
+            "text" : "1 min",
+            "value" : 0
+          },
+          "end_address" : "Pfarrkirchener Str. 16, 84307 Eggenfelden, Germany",
+          "end_location" : {
+            "lat" : 48.4042377,
+            "lng" : 12.7651785
+          },
+          "start_address" : "Pfarrkirchener Str. 16, 84307 Eggenfelden, Germany",
+          "start_location" : {
+            "lat" : 48.4042377,
+            "lng" : 12.7651785
+          },
+          "steps" : [
+            {
+              "distance" : {
+                "text" : "1 m",
+                "value" : 0
+              },
+              "duration" : {
+                "text" : "1 min",
+                "value" : 0
+              },
+              "end_location" : {
+                "lat" : 48.4042377,
+                "lng" : 12.7651785
+              },
+              "html_instructions" : "Head on \u003cb\u003ePfarrkirchener Str.\u003c/b\u003e",
+              "polyline" : {
+                "points" : "o}lfHke|lA"
+              },
+              "start_location" : {
+                "lat" : 48.4042377,
+                "lng" : 12.7651785
+              },
+              "travel_mode" : "DRIVING"
+            }
+          ],
+          "traffic_speed_entry" : [],
+          "via_waypoint" : []
+        }
+      ],
+      "overview_polyline" : {
+        "points" : "o}lfHke|lA"
+      },
+      "summary" : "Pfarrkirchener Str.",
+      "warnings" : [],
+      "waypoint_order" : []
+    }
+  ],
+  "status" : "OK"
+}
