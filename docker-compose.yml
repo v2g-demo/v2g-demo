@@ -30,7 +30,7 @@ services:
       - db
       - redis
     ports:
-      - 8080:8080
+      - 80:8080
   #   environment:
   #     V2GDEMO_MYSQL_DB_HOST: mysql
   #     V2GDEMO_MYSQL_DB_PORT: 3306
