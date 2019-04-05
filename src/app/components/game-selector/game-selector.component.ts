@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GameSelectorDataInterface} from '../../interfaces/game-selector-data.interface';
 import {MapService} from '../../services/map.service';
 import {latLng, MapOptions, tileLayer} from 'leaflet';
+import {GameMap} from '../../services/game.data';
 
 @Component({
   selector: 'app-game-selector',
@@ -9,7 +9,7 @@ import {latLng, MapOptions, tileLayer} from 'leaflet';
   styleUrls: ['./game-selector.component.scss']
 })
 export class GameSelectorComponent implements OnInit {
-  public gameSelectorsData: GameSelectorDataInterface[];
+  public gameSelectorsData: GameMap[];
 
   mapOptions = {
     layers: [tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3']})],
@@ -29,10 +29,10 @@ export class GameSelectorComponent implements OnInit {
     });
   }
 
-  makeOptions(data: GameSelectorDataInterface): MapOptions {
+  makeOptions(data: GameMap): MapOptions {
     const result = this.mapOptions;
     result.center = latLng(data.latitude, data.longitude);
-    // result.zoom = data.zoom;
+    result.zoom = data.zoom;
     return  result;
   }
 

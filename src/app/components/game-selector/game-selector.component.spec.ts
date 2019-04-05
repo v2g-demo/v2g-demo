@@ -4,7 +4,6 @@ import { GameSelectorComponent } from './game-selector.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {GameDataService} from '../../services/game-data.service';
-import {GameSelectorDataInterface} from '../../interfaces/game-selector-data.interface';
 
 describe('GameSelectorComponent', () => {
   let component: GameSelectorComponent;

@@ -2,8 +2,6 @@ import {TestBed} from '@angular/core/testing';
 
 import {GameDataService} from './game-data.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {MOCK_DATA} from '../api/dev.api';
-import {GameSelectorDataInterface} from '../interfaces/game-selector-data.interface';
 
 xdescribe('GameDataService', () => {
   let service: GameDataService;
