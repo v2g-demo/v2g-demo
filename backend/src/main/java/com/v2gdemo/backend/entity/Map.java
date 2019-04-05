@@ -1,5 +1,7 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +22,15 @@ public class Map {
     private Long id;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "map")
+    @JsonManagedReference(value = "obz")
     private List<Object> objects;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
+    @JsonManagedReference(value = "chars")
     private List<Character> characters;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
+    @JsonManagedReference(value = "resp")
     private List<RespawnPoint> respawnPoints;
 
     @NotBlank

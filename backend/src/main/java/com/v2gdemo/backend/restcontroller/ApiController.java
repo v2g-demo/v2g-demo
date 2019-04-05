@@ -1,7 +1,9 @@
 package com.v2gdemo.backend.restcontroller;
 
+import com.v2gdemo.backend.entity.Character;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import com.v2gdemo.backend.service.ApiService;
+import com.v2gdemo.backend.service.CreateCharactersService;
 import com.v2gdemo.backend.service.MoveVehicleService;
 import com.v2gdemo.places.FindRouteObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class ApiController {
 private MoveVehicleService moveVehicle;
   @Autowired
   private FindRouteObject findRoute;
+  @Autowired
+  private CreateCharactersService createCharactersService;
    @GetMapping("/buildroute")
   public String buildRoute(@RequestParam(name = "from") long from,@RequestParam("to") long to) throws ServerException{
 return apiService.buildRoute(from,to);
@@ -28,6 +32,11 @@ return apiService.buildRoute(from,to);
   public String moveVehicle(@RequestParam(name = "vehicleID") long carId,@RequestParam(name = "objectID") long
                             objId){
           return moveVehicle.move(carId, objId);
+
+   }
+   @GetMapping("/createCharacters")
+  public Character createCharacters(@RequestParam("userId") String userId, @RequestParam("mapId") long mapId){
+      return createCharactersService.createCharacters(userId,mapId);
 
    }
 }

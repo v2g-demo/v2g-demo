@@ -1,5 +1,7 @@
 package com.v2gdemo.backend;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.entity.*;
 import com.v2gdemo.backend.entity.Character;
@@ -13,7 +15,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.util.Collections;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -25,14 +30,16 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
  private UserDao userDao;
  private ObjectRepository objectRepository;
 
-
+private RespawnPointRepository respawnPointRepository;
  private MapRepository mapRepository;
     @Autowired
-  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
+  public InitialDataCreator(RespawnPointRepository respawnPointRepository,CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
     this.charRepository = characterRepository;
     this.userDao = userDao;
     this.objectRepository =  objectRepository;
     this.mapRepository = mapRepository;
+    this.respawnPointRepository = respawnPointRepository;
+
 
   }
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -86,6 +93,23 @@ userDao.save(user);
       object.setOwner(character);
 
       objectRepository.save(object);
+    try {
+      createRespawnPoints();
+    } catch (Exception ex){ex.printStackTrace();}
+
+    }
+
+    public void createRespawnPoints() throws Exception{
+     Map first = mapRepository.findById(1L).get();
+      ObjectMapper mapper =new ObjectMapper();
+      List<RespawnPoint> respawnPoints = mapper.readValue(new File("/home/olexandr/ideaProjects/v2g-demo/backend/src/main/resources/static/respawn-points.json"),mapper.getTypeFactory().constructCollectionType(List.class,RespawnPoint.class));
+      respawnPoints.forEach((respawnPoint)->{
+        respawnPoint.setMap(null);
+      });
+      respawnPointRepository.saveAll(respawnPoints);
+      System.out.println(respawnPoints.toString());
+
+
 
     }
 }

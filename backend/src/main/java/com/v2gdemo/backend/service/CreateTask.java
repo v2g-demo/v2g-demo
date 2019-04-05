@@ -28,7 +28,7 @@ private TaskRepository taskRepository;
   private static final long DELAY = 10000;
 
 
-  @Scheduled(fixedDelay = DELAY)
+//  @Scheduled(fixedDelay = DELAY)
   public void createRandomTask(){
 
     List<Object> objects = LettuceLists.newList(objectRepository.findAll());

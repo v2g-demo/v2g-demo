@@ -1,5 +1,7 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
@@ -25,21 +27,26 @@ public class Object {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
  @OneToMany( fetch = FetchType.EAGER,mappedBy = "car")
+ @JsonManagedReference("cars")
   private Set<Task> carsInTask;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="map_id")
+    @JsonBackReference("obz")
     private Map map;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="owner_id")
+    @JsonBackReference("objects")
     private Character owner;
 
    @OneToMany(fetch = FetchType.EAGER,mappedBy = "to")
-  private Set<Task> tasks;
+   @JsonManagedReference("tasks")
+   private Set<Task> tasks;
 
 
   @OneToOne(mappedBy = "object")
+  @JsonBackReference("wallet")
     private Wallet wallet;
 
     @NotBlank

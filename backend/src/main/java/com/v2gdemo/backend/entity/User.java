@@ -1,6 +1,8 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,6 +31,7 @@ public class User {
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonManagedReference("user")
     private List<Character> characters;
 
 
