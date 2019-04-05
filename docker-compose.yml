@@ -23,18 +23,6 @@ services:
       ports:
           - 5432:5432
 
-  # mysql:
-  #   image: mysql:8
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   restart: always
-  #   ports:
-  #     - 3306:3306
-  #   environment:
-  #     MYSQL_DATABASE: v2gdemo
-  #     MYSQL_USER: v2gdemo
-  #     MYSQL_PASSWORD: v2gdemo
-  #     MYSQL_ROOT_PASSWORD: pass
-
   v2gdemo:
     image: bronin/v2gdemo:latest
     restart: always
@@ -63,21 +51,6 @@ services:
       - db
     ports:
       - 8081:8080
-
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: phpmyadmin
-  #   links:
-  #     - mysql
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=mysql
-  #     - PMA_PORT=3306
-  #   restart: always
-  #   ports:
-  #     - 8081:80
-  #   volumes:
-  #   - /sessions
 
   # sample:
   #   image: bronin/java-sample-microservice:latest
