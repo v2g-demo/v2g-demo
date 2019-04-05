@@ -1,6 +1,6 @@
 version: '3.7'
-# volumes:
-#  dbdata1:
+volumes:
+ pg_db:
 
 services:
 
@@ -10,31 +10,39 @@ services:
     ports:
       - 6379:6379
 
-  mysql:
-    image: mysql:8
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    # volumes:
-    #   - dbdata1:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: v2gdemo
-      MYSQL_USER: v2gdemo
-      MYSQL_PASSWORD: v2gdemo
-      MYSQL_ROOT_PASSWORD: pass
-      # PMA_PORT: 3306
-      # PMA_HOST: mysql
-      # PMA_USER: root
+  db:
+      image: postgres:9.5-alpine
+      restart: always
+      volumes:
+          - pg_db:/var/lib/postgresql/data
+      environment:
+          - POSTGRES_PASSWORD=v2gdemo
+          - POSTGRES_USER=v2gdemo
+          - POSTGRES_DB=v2gdemo
+          - PGDATA=/var/lib/postgresql/data/pgdata
+      ports:
+          - 5432:5432
 
-  # v2gdemo:
-  #   image: bronin/v2gdemo:latest
+  # mysql:
+  #   image: mysql:8
+  #   command: --default-authentication-plugin=mysql_native_password
   #   restart: always
-  #   links:
-  #     - mysql
-  #     - redis
   #   ports:
-  #     - 8080:8080
+  #     - 3306:3306
+  #   environment:
+  #     MYSQL_DATABASE: v2gdemo
+  #     MYSQL_USER: v2gdemo
+  #     MYSQL_PASSWORD: v2gdemo
+  #     MYSQL_ROOT_PASSWORD: pass
+
+  v2gdemo:
+    image: bronin/v2gdemo:latest
+    restart: always
+    links:
+      - db
+      - redis
+    ports:
+      - 8080:8080
   #   environment:
   #     V2GDEMO_MYSQL_DB_HOST: mysql
   #     V2GDEMO_MYSQL_DB_PORT: 3306
@@ -48,20 +56,28 @@ services:
   #     start_period: 30s
   #   restart: on-failure
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    links:
-      - mysql
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
+  adminer:
+    image: adminer
     restart: always
+    links:
+      - db
     ports:
-      - 8081:80
-    volumes:
-    - /sessions
+      - 8081:8080
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   links:
+  #     - mysql
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=mysql
+  #     - PMA_PORT=3306
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   volumes:
+  #   - /sessions
 
   # sample:
   #   image: bronin/java-sample-microservice:latest
