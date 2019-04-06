@@ -9,8 +9,6 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@Configuration
-@ComponentScan
 @SpringBootApplication
 @EnableWebMvc
 @EnableScheduling
