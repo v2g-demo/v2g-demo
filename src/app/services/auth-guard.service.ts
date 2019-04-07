@@ -18,13 +18,13 @@ export class AuthGuardService implements CanActivate  {
     this.authenticatedUser = localStorage.getItem('characterId');
     const isAuth = (this.authenticatedUser && this.authenticatedUser !== '');
     console.log('AuthGuard#canActivate called: ' + isAuth);
-    //return isAuth;
+    // return isAuth;
     return true;
   }
 
   createUser(): string  {
-    //this.http.get()
-    return ""; //call api
+    // this.http.get()
+    return ''; // call api
   }
 
   // login (username: string) {
