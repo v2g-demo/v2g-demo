@@ -6,12 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
-import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
-import { environment } from '../environments/environment';
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
@@ -45,7 +41,7 @@ import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.compon
   declarations: [
     AppComponent,
     NotFoundComponent,
-    MapComponent,
+//    MapComponent,
     GameSelectorComponent,
     AboutComponent,
     LefleatMapComponent,
@@ -55,11 +51,11 @@ import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.compon
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    LeafletModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApiKey
-    }),
-    AgmSnazzyInfoWindowModule
+    LeafletModule.forRoot()
+    // AgmCoreModule.forRoot({
+    //   apiKey: environment.googleMapsApiKey
+    // }),
+    // AgmSnazzyInfoWindowModule
 
   ],
   providers: [GameDataService, AuthGuardService],
