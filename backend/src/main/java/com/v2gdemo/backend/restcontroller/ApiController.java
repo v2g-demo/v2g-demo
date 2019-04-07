@@ -3,6 +3,7 @@ package com.v2gdemo.backend.restcontroller;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import com.v2gdemo.backend.service.ApiService;
 import com.v2gdemo.backend.service.MoveVehicleService;
+import com.v2gdemo.places.FindPlaceObject;
 import com.v2gdemo.places.FindRouteObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,11 @@ return apiService.buildRoute(from,to);
   public String moveVehicle(@RequestParam(name = "vehicleID") long carId,@RequestParam(name = "objectID") long
                             objId){
           return moveVehicle.move(carId, objId);
+
+   }
+   @GetMapping("/getChargersFor")
+  public String getChargersFor(@RequestParam("radius")String radius,@RequestParam("objectId") long objId) throws Exception{
+     return apiService.getChargers(radius, objId).toString();
 
    }
 }
