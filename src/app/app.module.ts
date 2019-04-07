@@ -14,6 +14,7 @@ import { AboutComponent } from './components/about/about.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.component';
+import {MapComponent} from './components/map/map.component';
 
 
 
@@ -41,7 +42,7 @@ import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.compon
   declarations: [
     AppComponent,
     NotFoundComponent,
-//    MapComponent,
+    MapComponent,
     GameSelectorComponent,
     AboutComponent,
     LefleatMapComponent,
