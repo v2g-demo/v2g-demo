@@ -15,6 +15,8 @@ public class RestConfig implements RepositoryRestConfigurer {
     @Autowired
     private EntityManager entityManager;
 
+    // https://stackoverflow.com/questions/23264044/disable-hypertext-application-language-hal-in-json
+
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.setDefaultMediaType(MediaType.APPLICATION_JSON);
@@ -23,5 +25,6 @@ public class RestConfig implements RepositoryRestConfigurer {
                 entityManager.getMetamodel().getEntities().stream()
                         .map(Type::getJavaType)
                         .toArray(Class[]::new));
+
     }
 }

@@ -3,8 +3,13 @@ package com.v2gdemo.backend.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Data
@@ -15,13 +20,25 @@ public class Task {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @NotBlank
   @JoinColumn(name="car_id")
-  private Object car;
+  private long car;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @NotBlank
   @JoinColumn(name = "object_id")
-  private Object to;
+  private long to;
 
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  private Task.Status status;
+  public enum Status {
+    NEW,
+    DONE,
+  }
 
+  @CreationTimestamp
+  private Date createdAt;
+
+  @UpdateTimestamp
+  private Date updatedAt;
 }

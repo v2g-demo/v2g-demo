@@ -21,23 +21,23 @@ public class Character {
     private Long id;
 
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="map_id")
     private Map map;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",cascade = CascadeType.ALL)
-    private Set<Object> objects = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "owner")
+    private List<Object> objects = new ArrayList<>();
 
     @NotBlank
     private String name;
 
     private Role role;
     public enum Role {
-        ORGANISATION,
+        ORGANIZATION,
         PERSON,
         BOT
     }

@@ -9,8 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -24,22 +22,16 @@ public class Object {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
- @OneToMany( fetch = FetchType.EAGER,mappedBy = "car")
-  private Set<Task> carsInTask;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="map_id")
     private Map map;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     private Character owner;
 
-   @OneToMany(fetch = FetchType.EAGER,mappedBy = "to")
-  private Set<Task> tasks;
-
-
-  @OneToOne(mappedBy = "object")
+    @OneToOne(mappedBy = "object")
     private Wallet wallet;
 
     @NotBlank
@@ -73,9 +65,4 @@ public class Object {
         private Double longitude;
     }
 
-    @CreationTimestamp
-    private Date createdAt;
-
-    @UpdateTimestamp
-    private Date updatedAt;
 }
