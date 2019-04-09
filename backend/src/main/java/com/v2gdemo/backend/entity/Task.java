@@ -15,22 +15,25 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "task")
 public class Task {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @NotBlank
+  @NotNull
   @JoinColumn(name="car_id")
-  private long car;
+  @Column(name = "car")
+  private Long car;
 
-  @NotBlank
+  @NotNull
   @JoinColumn(name = "object_id")
-  private long to;
+  @Column(name = "to_car")
+  private Long to;
 
   @NotNull
   @Enumerated(EnumType.STRING)
-  private Task.Status status;
+  private Status status;
   public enum Status {
     NEW,
     DONE,
