@@ -57,8 +57,17 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         character.setUser(user);
         character.setMap(map);
         character.setName("Allego");
-        character.setRole(Character.Role.ORGANIZATION);
+        character.setRole(Character.Role.PERSON);
         character = charRepository.save(character);
+
+        Object car = new Object();
+      car.setOwner(character);
+      car.setType(Object.Type.VEHICLE);
+        car.setLocation(new Object.Location(54.44,65.33));
+        car.setName("car");
+        car.setMap(map);
+        car.setReference(null);
+        objectRepository.save(car);
 
       for (int i =0; i<3; i++) {
         Object object = new Object();
