@@ -15,6 +15,9 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.component';
 import {MapComponent} from './components/map/map.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
+import { GameComponent } from './components/game/game.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -46,6 +49,9 @@ import {MapComponent} from './components/map/map.component';
     GameSelectorComponent,
     AboutComponent,
     LefleatMapComponent,
+    InfoPanelComponent,
+    GameComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
