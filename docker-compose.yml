@@ -30,19 +30,19 @@ services:
       - db
       - redis
     ports:
-      - 80:8080
-  #   environment:
-  #     V2GDEMO_MYSQL_DB_HOST: mysql
-  #     V2GDEMO_MYSQL_DB_PORT: 3306
-  #     V2GDEMO_MYSQL_DB_USERNAME: root
-  #     V2GDEMO_MYSQL_DB_PORT: pass
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8080/profile"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-  #     start_period: 30s
-  #   restart: on-failure
+      - 8080:8080
+    environment:
+      V2G_DB_HOST: db
+      V2G_DB_PORT: 5432
+      V2G_DB_USER: v2gdemo
+      V2G_DB_PASS: v2gdemo
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/profile"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: on-failure
 
   adminer:
     image: adminer

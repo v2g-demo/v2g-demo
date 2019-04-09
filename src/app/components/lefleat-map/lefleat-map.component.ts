@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {circle, icon, latLng, marker, polygon, tileLayer} from 'leaflet';
 import {MapService} from '../../services/map.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-lefleat-map',
@@ -39,11 +40,12 @@ export class LefleatMapComponent implements OnInit {
   //   })
   // ];
 
-  constructor(private mapService: MapService) {
+  constructor(public route: ActivatedRoute, private mapService: MapService) {
   }
 
   ngOnInit() {
-    this.mapService.getObjects(1).subscribe((data) => {
+    const id = this.route.snapshot.params.id;
+    this.mapService.getObjects(id).subscribe((data) => {
       console.log(data);
       const m = marker([52.520008, 13.404954], {
         icon: icon({
@@ -55,6 +57,7 @@ export class LefleatMapComponent implements OnInit {
       });
       this.layers.push(m);
     });
+
   }
 
 }
