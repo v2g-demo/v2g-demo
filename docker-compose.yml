@@ -13,8 +13,8 @@ services:
   db:
       image: postgres:9.5-alpine
       restart: always
-      volumes:
-          - pg_db:/var/lib/postgresql/data
+#      volumes:
+#          - pg_db:/var/lib/postgresql/data
       environment:
           - POSTGRES_PASSWORD=v2gdemo
           - POSTGRES_USER=v2gdemo
