@@ -1,10 +1,19 @@
 <section>
   <div class="container">
     <div class="game-selector__wrapper" *ngIf="gameSelectorsData">
-      <app-game-selector-item *ngFor="let gameSelectorItem of gameSelectorsData"
-                              [gameSelectorItemConfig]="gameSelectorItem">
+        <div class="card" *ngFor="let item of gameSelectorsData">
 
-      </app-game-selector-item>
+          <div  style="height: 300px;"
+            leaflet
+                [leafletOptions]="makeOptions(item)"
+          ></div>
+
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">Online: {{item.usersOnline}}</p>
+            <a [routerLink]="['/', 'map', item.id]" class="btn btn-primary">Play the game</a>
+          </div>
+      </div>
     </div>
   </div>
 </section>

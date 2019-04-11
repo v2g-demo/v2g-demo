@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LefleatMapComponent } from './lefleat-map.component';
+import { InfoPanelComponent } from './info-panel.component';
 
-xdescribe('LefleatMapComponent', () => {
-  let component: LefleatMapComponent;
-  let fixture: ComponentFixture<LefleatMapComponent>;
+describe('InfoPanelComponent', () => {
+  let component: InfoPanelComponent;
+  let fixture: ComponentFixture<InfoPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LefleatMapComponent ]
+      declarations: [ InfoPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LefleatMapComponent);
+    fixture = TestBed.createComponent(InfoPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

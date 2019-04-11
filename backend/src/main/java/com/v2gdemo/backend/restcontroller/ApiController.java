@@ -34,9 +34,4 @@ return apiService.buildRoute(from,to);
           return moveVehicle.move(carId, objId);
 
    }
-   @GetMapping("/createCharacters")
-  public Character createCharacters(@RequestParam("userId") String userId, @RequestParam("mapId") long mapId){
-      return createCharactersService.createCharacters(userId,mapId);
-
-   }
 }

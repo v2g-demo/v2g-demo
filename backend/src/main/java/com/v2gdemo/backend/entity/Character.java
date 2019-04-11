@@ -34,16 +34,15 @@ public class Character {
     @JsonBackReference("user")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",cascade = CascadeType.ALL)
-    @JsonManagedReference("objects")
-    private Set<Object> objects = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "owner")
+    private List<Object> objects = new ArrayList<>();
 
     @NotBlank
     private String name;
 
     private Role role;
     public enum Role {
-        ORGANISATION,
+        ORGANIZATION,
         PERSON,
         BOT
     }

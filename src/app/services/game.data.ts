@@ -1,36 +1,27 @@
 
-// base
-export class GameInfo {
-  id: number;
+export class GameMap {
+  id: string;
   name: string;
-  playersOnline: number; // count
+  usersOnline: number;
+  latitude: number;
+  longitude: number;
+  zoom: number;
 }
 
-export class Player {
+
+export class Character {
   id: number;
   name: string;
   walletId: number;
-  gameId: number; // GameInfo.id
+  mapId: number;
 }
 
 export class GameData {
-  info: GameInfo;
   time: number;
   timeMultiplier: number;
   priceHistory: number[];
   consumptionHistory: number[];
   topPlayers: number[]; // player ids
-
-
-
-  // isOnline: boolean;
-  // currentFirmvare?: string = '';
-  // currentFirmvareName?: string;
-  // firmwares: FirmwareModel[] = [];
-  // sensors?: SensorModel[] = [];
-  // lastSeen?: string;
-  // redlist?: string;
-
 }
 
 export class Wallet {

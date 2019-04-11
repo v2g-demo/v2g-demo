@@ -1,10 +1,10 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --prod` replaces `environment.dev.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  googleMapsApiKey: 'AIzaSyC5FPao0z1-GGHRrLy08CHywOtjsuZ8AXc',
+  googleMapsApiKey: 'KEY',
   host: 'http://localhost:4200',
   apiUrl: 'http://localhost:8080/api'
 };

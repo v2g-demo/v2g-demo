@@ -8,8 +8,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
+  xit('should display welcome message', () => {
+    page.navigateTo('');
     expect(page.getTitleText()).toEqual('Welcome to v2g-demo!');
   });
 
@@ -30,7 +30,7 @@ describe('About page', () => {
   });
 
   it('should display about text', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to v2g-demo!');
+    page.navigateTo('/#/about');
+    expect(page.getTitleText()).toEqual('about works!');
   });
 });

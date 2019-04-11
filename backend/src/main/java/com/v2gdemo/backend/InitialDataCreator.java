@@ -27,13 +27,13 @@ import java.util.List;
 public class InitialDataCreator implements ApplicationListener<ApplicationReadyEvent> {
     @NonNull
     private  CharacterRepository charRepository;
- private UserDao userDao;
- private ObjectRepository objectRepository;
+    private UserDao userDao;
+    private ObjectRepository objectRepository;
 
-private RespawnPointRepository respawnPointRepository;
+ private RespawnPointRepository respawnPointRepository;
  private MapRepository mapRepository;
     @Autowired
-  public InitialDataCreator(RespawnPointRepository respawnPointRepository,CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
+  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
     this.charRepository = characterRepository;
     this.userDao = userDao;
     this.objectRepository =  objectRepository;
@@ -43,56 +43,45 @@ private RespawnPointRepository respawnPointRepository;
 
   }
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        System.out.println("42");
-       if (userDao.count() > 0) {
+
+        // TODO: fix this check does not work
+        if (userDao.count() > 0) {
             return;
-     }
-
-
-
+        }
 
        Map map = new Map();
        map.setCenter(new Map.Location(52.520008,13.404954));
        map.setZoom(5);
        map.setName("Berlin");
-      mapRepository.save(map);
+       map = mapRepository.save(map);
 
-User user = new User();
-user.setId("someid");
-user.setName("Somename");
-user.setLogin("log");
-user.setPassword("passwords"
-);
-userDao.save(user);
+        User user = new User();
+        user.setId("1");
+        user.setName("system");
+        user = userDao.save(user);
 
+        Character character = new Character();
+        character.setUser(user);
+        character.setMap(map);
+        character.setName("Allego");
+        character.setRole(Character.Role.ORGANIZATION);
+        character = charRepository.save(character);
 
-      for (int i =0;i<3;i++) {
+      for (int i =0; i<3; i++) {
         Object object = new Object();
         int multiplicator  = i /100;
         object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
         object.setLocation(new Object.Location(52.522703+multiplicator, 13.413916+multiplicator));
-        object.setName("Allego num"+i);
+        object.setName("Allego num_"+i);
         if (i == 2) object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM"); else object.setPlaceId("ChIJlQn4WGa5dUcRDT6kUOs8dtM");
         object.setReference(null);
         object.setRotationAngle(0);
         object.setType(Object.Type.CHARGER);
         object.setMap(map);
+        object.setOwner(character);
         objectRepository.save(object);
       }
-      Object object = new Object();
-      object.setMap(map);
-      object.setType(Object.Type.VEHICLE);
-      object.setName("my car");
-      object.setPlaceId("places");
 
-
-      Character character = new Character();
-      character.setUser(user);
-      character.setMap(map);
-      character.setName("Somename");
-      object.setOwner(character);
-
-      objectRepository.save(object);
     try {
       createRespawnPoints();
     } catch (Exception ex){ex.printStackTrace();}
@@ -108,8 +97,7 @@ userDao.save(user);
       });
       respawnPointRepository.saveAll(respawnPoints);
       System.out.println(respawnPoints.toString());
-
-
+        System.out.println("===== Initial data loaded.");
 
     }
 }

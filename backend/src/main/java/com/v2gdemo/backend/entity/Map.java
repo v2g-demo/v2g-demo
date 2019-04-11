@@ -21,7 +21,7 @@ public class Map {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "map")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "map")
     @JsonManagedReference(value = "obz")
     private List<Object> objects;
 

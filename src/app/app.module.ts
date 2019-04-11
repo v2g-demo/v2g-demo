@@ -6,19 +6,18 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
-import { MapComponent } from './components/map/map.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
-import { environment } from '../environments/environment';
-import { GameSelectorItemComponent } from './components/game-selector-item/game-selector-item.component';
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.component';
+import {MapComponent} from './components/map/map.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
+import { GameComponent } from './components/game/game.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -48,20 +47,22 @@ import { LefleatMapComponent } from './components/lefleat-map/lefleat-map.compon
     NotFoundComponent,
     MapComponent,
     GameSelectorComponent,
-    GameSelectorItemComponent,
     AboutComponent,
     LefleatMapComponent,
+    InfoPanelComponent,
+    GameComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    LeafletModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApiKey
-    }),
-    AgmSnazzyInfoWindowModule
+    LeafletModule.forRoot()
+    // AgmCoreModule.forRoot({
+    //   apiKey: environment.googleMapsApiKey
+    // }),
+    // AgmSnazzyInfoWindowModule
 
   ],
   providers: [GameDataService, AuthGuardService],

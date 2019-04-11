@@ -26,27 +26,20 @@ public class Object {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
- @OneToMany( fetch = FetchType.EAGER,mappedBy = "car")
- @JsonManagedReference("cars")
-  private Set<Task> carsInTask;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="map_id")
     @JsonBackReference("obz")
     private Map map;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     @JsonBackReference("objects")
     private Character owner;
 
-   @OneToMany(fetch = FetchType.EAGER,mappedBy = "to")
-   @JsonManagedReference("tasks")
-   private Set<Task> tasks;
-
-
-  @OneToOne(mappedBy = "object")
-  @JsonBackReference("wallet")
+    @OneToOne(mappedBy = "object")
+    @JsonManagedReference("tasks")
     private Wallet wallet;
 
     @NotBlank
@@ -80,9 +73,4 @@ public class Object {
         private Double longitude;
     }
 
-    @CreationTimestamp
-    private Date createdAt;
-
-    @UpdateTimestamp
-    private Date updatedAt;
 }
