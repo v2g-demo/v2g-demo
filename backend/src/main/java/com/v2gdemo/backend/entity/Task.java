@@ -1,5 +1,6 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,11 +25,13 @@ public class Task {
   @NotNull
   @JoinColumn(name="car_id")
   @Column(name = "car")
+ @JsonBackReference("tasks")
   private Long car;
 
   @NotNull
   @JoinColumn(name = "object_id")
   @Column(name = "to_car")
+  @JsonBackReference("cars")
   private Long to;
 
   @NotNull

@@ -1,11 +1,14 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,10 +22,11 @@ public class RespawnPoint {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="map_id")
+    @JsonBackReference(value = "resp")
     private Map map;
 
-    @NotBlank
+    @NotNull
     private Double latitude;
-    @NotBlank
+    @NotNull
     private Double longitude;
 }

@@ -1,5 +1,8 @@
 package com.v2gdemo.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,12 +24,14 @@ public class Character {
     private Long id;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="map_id")
+    @JsonBackReference("chars")
     private Map map;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="user_id")
+    @JsonBackReference("user")
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "owner")
@@ -43,8 +48,10 @@ public class Character {
     }
 
     @CreationTimestamp
+    @JsonIgnore
     private Date createdAt;
 
     @UpdateTimestamp
+    @JsonIgnore
     private Date updatedAt;
 }
