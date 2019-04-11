@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,11 +25,8 @@ public class RespawnPoint {
     @JsonBackReference(value = "resp")
     private Map map;
 
-
-
-
-    @NotBlank
+    @NotNull
     private Double latitude;
-    @NotBlank
+    @NotNull
     private Double longitude;
 }
