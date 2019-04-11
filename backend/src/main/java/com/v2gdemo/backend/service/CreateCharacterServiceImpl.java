@@ -38,18 +38,28 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
     character.setMap(mapRepository.findById(mapId).orElseThrow(()->{
       throw new ServerException("Wrong map id!");
     }));
-    Object car = new Object();
+    character.setUser(user);
+    character.setRole(Character.Role.PERSON);
+    character = characterRepository.save(character);
+
     List<RespawnPoint> respawnPoints = LettuceLists.newList(respawnPointRepository.findAll());
     RespawnPoint respawnPoint = respawnPoints.get(ThreadLocalRandom.current().nextInt(respawnPoints.size()));
+
+    Object car = new Object();
+    car.setName(UUID.randomUUID().toString());
     car.setLocation(new Object.Location(respawnPoint.getLatitude(),respawnPoint.getLongitude()));
     car.setType(Object.Type.VEHICLE);
+    car.setOwner(character);
+    objectRepository.save(car);
+
     Object home = new Object();
+    home.setName(UUID.randomUUID().toString());
     home.setLocation(new Object.Location(respawnPoint.getLatitude(),respawnPoint.getLongitude()));
     home.setType(Object.Type.HOUSE);
-    character.setUser(user);
-    character.getObjects().addAll(Stream.of(car,home).collect(Collectors.toList()));
-    character.setRole(Character.Role.PERSON);
-    characterRepository.save(character);
+    home.setOwner(character);
+    objectRepository.save(home);
+
+
     return character;
   }
 }
