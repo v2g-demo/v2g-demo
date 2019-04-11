@@ -38,9 +38,9 @@ public class Object {
     @JsonBackReference("objects")
     private Character owner;
 
-    @OneToOne(mappedBy = "object")
-    @JsonManagedReference("tasks")
-    private Wallet wallet;
+//    @OneToOne(mappedBy = "object")
+//    @JsonManagedReference("tasks")
+//    private Wallet wallet;
 
     @NotBlank
     private String name;

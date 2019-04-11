@@ -23,10 +23,10 @@ public class Wallet {
     @JsonManagedReference("trans")
     private List<Transaction> transactions;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "object_id", referencedColumnName = "id")
-    @JsonManagedReference("wallet")
-    private Object object;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "object_id", referencedColumnName = "id")
+//    @JsonManagedReference("wallet")
+//    private Object object;
 
     @UpdateTimestamp
     private Date updatedAt;

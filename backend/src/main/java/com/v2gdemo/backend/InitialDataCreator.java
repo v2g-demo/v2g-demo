@@ -1,6 +1,5 @@
 package com.v2gdemo.backend;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.entity.*;
@@ -12,12 +11,11 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.util.Collections;
+
 import java.util.List;
 
 
@@ -29,11 +27,10 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
     private  CharacterRepository charRepository;
     private UserDao userDao;
     private ObjectRepository objectRepository;
-
- private RespawnPointRepository respawnPointRepository;
- private MapRepository mapRepository;
+    private RespawnPointRepository respawnPointRepository;
+    private MapRepository mapRepository;
     @Autowired
-  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository){
+  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository, RespawnPointRepository respawnPointRepository){
     this.charRepository = characterRepository;
     this.userDao = userDao;
     this.objectRepository =  objectRepository;
@@ -83,21 +80,19 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
       }
 
     try {
-      createRespawnPoints();
+      createRespawnPoints(map);
     } catch (Exception ex){ex.printStackTrace();}
 
+    System.out.println("===== Initial data loaded.");
     }
 
-    public void createRespawnPoints() throws Exception{
-     Map first = mapRepository.findById(1L).get();
+    public void createRespawnPoints(Map map) throws Exception{
       ObjectMapper mapper =new ObjectMapper();
-      List<RespawnPoint> respawnPoints = mapper.readValue(new File("/home/olexandr/ideaProjects/v2g-demo/backend/src/main/resources/static/respawn-points.json"),mapper.getTypeFactory().constructCollectionType(List.class,RespawnPoint.class));
+      List<RespawnPoint> respawnPoints = mapper.readValue(new ClassPathResource("static/respawn-points.json").getFile(), mapper.getTypeFactory().constructCollectionType(List.class,RespawnPoint.class));
       respawnPoints.forEach((respawnPoint)->{
-        respawnPoint.setMap(null);
+        respawnPoint.setMap(map);
       });
-      respawnPointRepository.saveAll(respawnPoints);
+      this.respawnPointRepository.saveAll(respawnPoints);
       System.out.println(respawnPoints.toString());
-        System.out.println("===== Initial data loaded.");
-
     }
 }
