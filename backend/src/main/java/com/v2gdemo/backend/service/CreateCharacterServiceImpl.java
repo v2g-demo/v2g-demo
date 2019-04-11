@@ -33,7 +33,7 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
     User user = userDao.findById(userId).orElseThrow(()->{
       throw new ServerException("Wrong user id!");
     });
-    com.v2gdemo.backend.entity.Character character = new com.v2gdemo.backend.entity.Character();
+    Character character = new com.v2gdemo.backend.entity.Character();
     character.setName(UUID.randomUUID().toString());
     character.setMap(mapRepository.findById(mapId).orElseThrow(()->{
       throw new ServerException("Wrong map id!");
