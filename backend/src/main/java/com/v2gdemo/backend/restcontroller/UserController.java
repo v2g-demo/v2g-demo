@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
-
-@RestController
-@RequestMapping("api/user")
+//
+//@RestController
+//@RequestMapping("api/user")
 public class UserController {
     @Autowired
     private UserService dao;
@@ -29,7 +29,7 @@ public class UserController {
 
     }
     @GetMapping("get/{userId}")
-    public User getUser(@PathVariable(name = "userId") String id)throws ServerException{
+    public User getUser(@PathVariable(name = "userId") long id)throws ServerException{
         return dao.getUser(id);
     }
 

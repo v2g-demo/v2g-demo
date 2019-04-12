@@ -1,6 +1,6 @@
 package com.v2gdemo.backend;
 
-import com.v2gdemo.backend.entity.Map;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -15,7 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-
 import java.util.List;
 
 
@@ -53,7 +52,6 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
        map = mapRepository.save(map);
 
         User user = new User();
-        user.setId("1");
         user.setName("system");
         user = userDao.save(user);
 
