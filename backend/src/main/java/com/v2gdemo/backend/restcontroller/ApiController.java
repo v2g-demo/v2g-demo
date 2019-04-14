@@ -45,11 +45,6 @@ return apiService.buildRoute(from,to);
     public Character createCharacters(@RequestParam("userId") Long userId, @RequestParam("mapId") long mapId) {
         return createCharactersService.createCharacters(userId, mapId);
     }
-    @GetMapping("/gets")
-  public Character get(@RequestParam("us") long user){
-     return userDao.findById(user).get().getActiveCharacter();
-
-    }
 
 
 }
