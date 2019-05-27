@@ -1,5 +1,7 @@
 {
   "name": "v2gdemo",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
