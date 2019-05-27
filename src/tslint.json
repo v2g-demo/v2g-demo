@@ -11,8 +11,8 @@
       true,
       "element",
       "app",
+      "page",
       "kebab-case"
-    ],
-    "max-line-length": [ false ]
+    ]
   }
 }

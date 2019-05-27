@@ -1,9 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
@@ -18,28 +22,9 @@ import {MapComponent} from './components/map/map.component';
 import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 import { GameComponent } from './components/game/game.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {AngularHalModule} from 'angular4-hal';
 
 
-
-// const DEMOS = [
-//   NgbdAccordionModule,
-//   NgbdAlertModule,
-//   NgbdButtonsModule,
-//   NgbdCarouselModule,
-//   NgbdCollapseModule,
-//   NgbdDatepickerModule,
-//   NgbdDropdownModule,
-//   NgbdModalModule,
-//   NgbdPaginationModule,
-//   NgbdPopoverModule,
-//   NgbdProgressbarModule,
-//   NgbdRatingModule,
-//   NgbdTableModule,
-//   NgbdTabsetModule,
-//   NgbdTimepickerModule,
-//   NgbdTooltipModule,
-//   NgbdTypeaheadModule
-// ];
 
 @NgModule({
   declarations: [
@@ -53,19 +38,26 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     GameComponent,
     SidebarComponent,
   ],
+  entryComponents: [],
   imports: [
     BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
-    NgbModule,
     HttpClientModule,
-    LeafletModule.forRoot()
+    AngularHalModule.forRoot(),
+   LeafletModule.forRoot(),
     // AgmCoreModule.forRoot({
     //   apiKey: environment.googleMapsApiKey
     // }),
     // AgmSnazzyInfoWindowModule
 
   ],
-  providers: [GameDataService, AuthGuardService],
+  providers: [
+    StatusBar,
+    SplashScreen,
+GameDataService, AuthGuardService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

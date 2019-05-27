@@ -1,38 +1,24 @@
-<header class="navbar navbar-expand navbar-dark px-4 flex-column flex-md-row">
-
-  <a class="navbar-brand mr-2 mr-md-0" routerLink="/" aria-label="NG Bootstrap" (click)="navbarCollapsed = true">
-    <span class="ml-2 d-xl-none d-lg-none d-md-none d-inline">ng-bootstrap</span>
-  </a>
-
-  <div class="navbar-nav-scroll">
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['home']" (click)="navbarCollapsed = true">V2G Demo</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['/about']" (click)="navbarCollapsed = true">About</a>
-      </li>
-    </ul>
-  </div>
-
-  <ul class="social-buttons navbar-nav flex-row ml-md-auto d-none d-lg-flex align-items-center">
-    <a class="github-button" href="https://github.com/v2g-demo/v2g-demo" rel="noopener" target="_blank" data-size="large" data-show-count="true"
-       data-count-aria-label="# stargazers on GitHub"><i class="fa fa-github-alt fa-2x"></i></a>
-<!--    <a href="https://twitter.com/intent/tweet?button_hashtag=ngbootstrap" rel="noopener" class="twitter-hashtag-button" data-size="large" data-text="I&#39;m checking out ng-bootstrap, THE Angular UI framework for Bootstrap CSS"-->
-<!--       data-url="https://ng-bootstrap.github.io" data-show-count="true">Tweet #ngbootstrap</a>-->
-  </ul>
-
-  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
-          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-</header>
-
-<div class="container-fluid">
-  <router-outlet></router-outlet>
-</div>
-
-<footer class="footer bg-light">
-    <p>footer</p>
-</footer>
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
