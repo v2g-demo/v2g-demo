@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 import {GameDataService} from './services/game-data.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -23,6 +22,7 @@ import { InfoPanelComponent } from './components/info-panel/info-panel.component
 import { GameComponent } from './components/game/game.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {AngularHalModule} from 'angular4-hal';
+import {HeaderComponent} from './header/header.component';
 
 
 
@@ -37,6 +37,7 @@ import {AngularHalModule} from 'angular4-hal';
     InfoPanelComponent,
     GameComponent,
     SidebarComponent,
+    HeaderComponent,
   ],
   entryComponents: [],
   imports: [
@@ -45,7 +46,7 @@ import {AngularHalModule} from 'angular4-hal';
     AppRoutingModule,
     HttpClientModule,
     AngularHalModule.forRoot(),
-   LeafletModule.forRoot(),
+    LeafletModule.forRoot(),
     // AgmCoreModule.forRoot({
     //   apiKey: environment.googleMapsApiKey
     // }),
@@ -55,7 +56,8 @@ import {AngularHalModule} from 'angular4-hal';
   providers: [
     StatusBar,
     SplashScreen,
-GameDataService, AuthGuardService,
+    GameDataService,
+    AuthGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

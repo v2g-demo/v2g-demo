@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GameComponent } from './game.component';
@@ -11,7 +12,8 @@ xdescribe('GameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameComponent, InfoPanelComponent, LefleatMapComponent, SidebarComponent ]
+      declarations: [ GameComponent, InfoPanelComponent, LefleatMapComponent, SidebarComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));

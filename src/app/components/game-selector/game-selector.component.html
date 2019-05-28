@@ -1,9 +1,10 @@
-<section>
-  <div class="container">
-    <div class="game-selector__wrapper" *ngIf="gameSelectorsData">
-        <div class="card" *ngFor="let item of gameSelectorsData">
+<app-header title="Game selector"></app-header>
 
-          <div  style="height: 300px;"
+<ion-content>
+    <div class="game-selector__wrapper_bak" *ngIf="gameSelectorsData">
+        <ion-card  class="card" *ngFor="let item of gameSelectorsData">
+
+          <div  style="height: 25vh; width: 100%;"
             leaflet
                 [leafletOptions]="makeOptions(item)"
           ></div>
@@ -11,9 +12,8 @@
           <div class="card-body">
             <h5 class="card-title">{{item.name}}</h5>
             <p class="card-text">Online: {{item.usersOnline}}</p>
-            <a [routerLink]="['/', 'map', item.id]" class="btn btn-primary">Play the game</a>
+            <a [routerLink]="['/', 'map', item.id]" class="ion-color-primary">Play the game</a>
           </div>
-      </div>
+      </ion-card >
     </div>
-  </div>
-</section>
+</ion-content>

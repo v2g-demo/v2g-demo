@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MapService} from '../../services/map.service';
-import {latLng, MapOptions, tileLayer} from 'leaflet';
+import {Map, latLng, MapOptions, tileLayer} from 'leaflet';
 import {GameMap} from '../../services/game.data';
 
 @Component({
@@ -29,6 +29,10 @@ export class GameSelectorComponent implements OnInit {
     });
   }
 
+  ionViewWillLeave() {
+    // this.map.remove();
+  }
+
   makeOptions(data: GameMap): MapOptions {
     const result = this.mapOptions;
     result.center = latLng(data.latitude, data.longitude);
@@ -36,5 +40,5 @@ export class GameSelectorComponent implements OnInit {
     return  result;
   }
 
-
+  // https://edupala.com/how-to-add-leaflet-map-in-ionic-4/
 }
