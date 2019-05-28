@@ -42,7 +42,7 @@ steps:
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: 'dist/**/*'
+    Contents: 'www/**/*'
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
