@@ -22,7 +22,7 @@ public class Places {
                 .build();
     }
 
-    public String GetChargers(LatLng southWest, LatLng northEast) {
+    public FindPlaceFromText GetChargers(LatLng center, int radius) {
         FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "car charger",
                 FindPlaceFromTextRequest.InputType.TEXT_QUERY)
                 .fields(
@@ -34,10 +34,11 @@ public class Places {
                         //FindPlaceFromTextRequest.FieldMask.RATING,
                         //FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
                         FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-                .locationBias(new FindPlaceFromTextRequest.LocationBiasRectangular(southWest, northEast));
+                .locationBias(new FindPlaceFromTextRequest.LocationBiasCircular(center,radius));
         try {
-            FindPlaceFromText results = req.await();
-            return Arrays.toString(results.candidates);
+            FindPlaceFromText results = req.awaitIgnoreError();
+            return results;
+
             // Handle successful request.
         } catch (Exception e) {
             // Handle error

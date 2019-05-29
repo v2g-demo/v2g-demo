@@ -33,7 +33,7 @@ public class FindPlaceImpl implements FindPlaceObject {
 
 
     public JsonNode sendRequest(PlaceAutocompleteRequest request) throws Exception {
-         builder = new URIBuilder("https://maps.googleapis.com/maps/api/place/autocomplete/json?strictbounds");
+         builder = new URIBuilder("https://maps.googleapis.com/maps/api/place/autocomplete/json?");
         builder.addParameter("key", key);
         builder.addParameter("input", request.getInput());
         builder.addParameter("location", request.getLoc());

@@ -1,10 +1,14 @@
 package com.v2gdemo.backend;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.maps.model.LatLng;
 import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.entity.*;
 import com.v2gdemo.backend.entity.Character;
 import com.v2gdemo.backend.entity.Object;
+import com.v2gdemo.maps.Places;
+import com.v2gdemo.places.FindPlaceObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -13,8 +17,10 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.NonNull;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -28,12 +34,16 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
     private ObjectRepository objectRepository;
     private RespawnPointRepository respawnPointRepository;
     private MapRepository mapRepository;
+    private PasswordEncoder passwordEncoder;
     @Autowired
-  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, ObjectRepository objectRepository, MapRepository mapRepository, RespawnPointRepository respawnPointRepository){
+    private FindPlaceObject findPlaceObject;
+    @Autowired
+  public InitialDataCreator(CharacterRepository characterRepository, UserDao userDao, PasswordEncoder passwordEncoder, ObjectRepository objectRepository, MapRepository mapRepository, RespawnPointRepository respawnPointRepository){
     this.charRepository = characterRepository;
     this.userDao = userDao;
     this.objectRepository =  objectRepository;
     this.mapRepository = mapRepository;
+    this.passwordEncoder = passwordEncoder;
     this.respawnPointRepository = respawnPointRepository;
 
 
@@ -53,6 +63,9 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
 
         User user = new User();
         user.setName("system");
+        user.setPassword(passwordEncoder.encode("pass"));
+        user.setLogin("login");
+        user.setRole(User.Role.PLAYER);
         user = userDao.save(user);
 
         Character character = new Character();
@@ -60,22 +73,75 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         character.setMap(map);
         character.setName("Allego");
         character.setRole(Character.Role.ORGANIZATION);
-        character = charRepository.save(character);
+        charRepository.save(character);
 
-      for (int i =0; i<3; i++) {
-        Object object = new Object();
-        int multiplicator  = i /100;
-        object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
-        object.setLocation(new Object.Location(52.522703+multiplicator, 13.413916+multiplicator));
-        object.setName("Allego num_"+i);
-        if (i == 2) object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM"); else object.setPlaceId("ChIJlQn4WGa5dUcRDT6kUOs8dtM");
-        object.setReference(null);
-        object.setRotationAngle(0);
-        object.setType(Object.Type.CHARGER);
-        object.setMap(map);
-        object.setOwner(character);
-        objectRepository.save(object);
-      }
+        try {
+          JsonNode chargeStations = findPlaceObject.getChargeStations("500000", "57.751244,37.618423");
+          for (JsonNode js: chargeStations) {
+            for (JsonNode jsonNode: js) {
+              Object object = new Object();
+              object.setName(jsonNode.get("description").asText());
+              object.setReference(jsonNode.get("reference").asText());
+              object.setLocation(new Object.Location(52.520008, 13.404954));
+              object.setPlaceId(jsonNode.get("place_id").asText());
+              object.setType(Object.Type.CHARGER);
+              object.setRotationAngle(0);
+              object.setOwner(character);
+              objectRepository.save(object);
+
+            }
+
+          }
+        } catch (Exception ex){ex.printStackTrace();}
+
+
+//        Object object = new Object();
+//        object.setMap(map);
+//        object.setName("charger");
+
+
+
+
+//        Object object = new Object();
+//
+//        object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
+//        object.setLocation(new Object.Location(52.522703, 13.413916));
+//        object.setName("Allego num_");
+//        object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
+//        object.setReference(null);
+//        object.setRotationAngle(0);
+//      object.setType(Object.Type.CHARGER);
+//      object.setMap(map);
+//      object.setOwner(character);
+//      objectRepository.save(object);
+//
+//
+//      Object object2 = new Object();
+//
+//      object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
+//      object.setLocation(new Object.Location(52.522703, 13.413916));
+//      object.setName("Allego num_");
+//      object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
+//      object.setReference(null);
+//      object.setRotationAngle(0);
+//      object.setType(Object.Type.CHARGER);
+//      object.setMap(map);
+//      object.setOwner(character);
+//      objectRepository.save(object);
+//
+//
+//      Object object3 = new Object();
+//
+//      object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
+//      object.setLocation(new Object.Location(52.522703, 13.413916));
+//      object.setName("Allego num_");
+//      object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
+//      object.setReference(null);
+//      object.setRotationAngle(0);
+//      object.setType(Object.Type.CHARGER);
+//      object.setMap(map);
+//      object.setOwner(character);
+//      objectRepository.save(object);
 
     try {
       createRespawnPoints(map);
