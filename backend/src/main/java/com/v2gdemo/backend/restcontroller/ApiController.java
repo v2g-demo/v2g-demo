@@ -1,6 +1,8 @@
 package com.v2gdemo.backend.restcontroller;
 
+import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.entity.Character;
+import com.v2gdemo.backend.entity.CharacterRepository;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import com.v2gdemo.backend.service.ApiService;
 import com.v2gdemo.backend.service.CreateCharactersService;
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api")
+//@RestController()
+//@RequestMapping("api")
 public class ApiController {
   @Autowired
   private ApiService apiService;
@@ -21,6 +23,10 @@ public class ApiController {
 private MoveVehicleService moveVehicle;
   @Autowired
   private FindRouteObject findRoute;
+  @Autowired
+  private CharacterRepository characterRepository;
+  @Autowired
+  private UserDao userDao;
   @Autowired
   private CreateCharactersService createCharactersService;
    @GetMapping("/buildroute")
@@ -36,7 +42,9 @@ return apiService.buildRoute(from,to);
    }
 
     @GetMapping("/createCharacter")
-    public Character createCharacters(@RequestParam("userId") String userId, @RequestParam("mapId") long mapId) {
+    public Character createCharacters(@RequestParam("userId") Long userId, @RequestParam("mapId") long mapId) {
         return createCharactersService.createCharacters(userId, mapId);
     }
+
+
 }

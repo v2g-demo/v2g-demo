@@ -29,7 +29,7 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
   @Autowired
   private ObjectRepository objectRepository;
   @Override
-  public Character createCharacters(String userId, long mapId) {
+  public Character createCharacters(Long userId, long mapId) {
     User user = userDao.findById(userId).orElseThrow(()->{
       throw new ServerException("Wrong user id!");
     });
@@ -40,6 +40,7 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
     }));
     character.setUser(user);
     character.setRole(Character.Role.PERSON);
+    user.setActiveCharacter(character);
     character = characterRepository.save(character);
 
     List<RespawnPoint> respawnPoints = LettuceLists.newList(respawnPointRepository.findAll());
@@ -62,4 +63,6 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
 
     return character;
   }
+
+
 }

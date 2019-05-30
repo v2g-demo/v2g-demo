@@ -34,6 +34,9 @@ public class Character {
     @JsonBackReference("user")
     private User user;
 
+    @OneToOne(mappedBy = "activeCharacter",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private User ownedBy;
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "owner")
     private List<Object> objects = new ArrayList<>();
 
@@ -46,6 +49,7 @@ public class Character {
         PERSON,
         BOT
     }
+
 
     @CreationTimestamp
     @JsonIgnore

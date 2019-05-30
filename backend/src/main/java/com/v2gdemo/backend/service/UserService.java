@@ -40,7 +40,6 @@ try {
 
         if (userDao.findByLogin(user.getUsername())!=null) throw new ServerException("User already exists");
         User newUser = new User();
-        newUser.setId(UUID.randomUUID().toString());
         newUser.setLogin(user.getUsername());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(encoder.encode(user.getPassword()));
@@ -50,7 +49,7 @@ try {
 
     }
 
-    public User getUser(String id) throws ServerException {
+    public User getUser(long id) throws ServerException {
         return userDao.findById(id).orElseThrow( ()->{return new ServerException("Couldnt find user with id: "+id);});
     }
 }

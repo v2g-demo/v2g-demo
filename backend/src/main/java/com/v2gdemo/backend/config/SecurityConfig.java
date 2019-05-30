@@ -47,23 +47,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new RequestContextListener();
     }
 
-    @Bean
-    public PrincipalExtractor principalExtractor(UserDao user){
-        return map -> {
-            String id = (String) map.get("sub");
-            User newUser = userDao.findById(id).orElseGet(()->{
-                User user1 = new User();
-                user1.setId(id);
-                user1.setLogin((String) map.get("name"));
-                user1.setEmail((String) map.get("email"));
-                user1.setRole(User.Role.PLAYER);
-                userDao.save(user1);
-                return user1;
-            });
-            return newUser;
-        };
-
-    }
+//    @Bean
+//    public PrincipalExtractor principalExtractor(UserDao user){
+//        return map -> {
+//            String id = (String) map.get("sub");
+//            User newUser = userDao.findById(id).orElseGet(()->{
+//                User user1 = new User();
+//                user1.setId(id);
+//                user1.setLogin((String) map.get("name"));
+//                user1.setEmail((String) map.get("email"));
+//                user1.setRole(User.Role.PLAYER);
+//                userDao.save(user1);
+//                return user1;
+//            });
+//            return newUser;
+//        };
+//
+//    }
 
 
     @Override

@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 @Repository
-public interface CharacterRepository extends CrudRepository<Character, Long> { }
+public interface CharacterRepository extends CrudRepository<Character, Long> {
+}
