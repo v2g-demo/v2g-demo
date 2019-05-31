@@ -20,17 +20,17 @@ steps:
   inputs:
     command: install
 
-- task: Npm@1
-  displayName: 'Test Angular'
-  inputs:
-    command: custom
-    customCommand: run test-headless
-
-- task: Npm@1
-  displayName: 'Test e2e'
-  inputs:
-    command: custom
-    customCommand: run e2e
+#- task: Npm@1
+#  displayName: 'Test Angular'
+#  inputs:
+#    command: custom
+#    customCommand: run test-headless
+#
+#- task: Npm@1
+#  displayName: 'Test e2e'
+#  inputs:
+#    command: custom
+#    customCommand: run e2e
 
 - task: Npm@1
   displayName: 'Build Angular'
