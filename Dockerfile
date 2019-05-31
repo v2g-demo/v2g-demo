@@ -45,5 +45,5 @@ COPY --from=packager "$JAVA_MINIMAL" "$JAVA_MINIMAL"
 COPY --from=backendbuilder "/build/target/backend-0.0.1-SNAPSHOT.jar" "/app.jar"
 
 EXPOSE 8080
-CMD [ "-jar", "/app.jar" ]
+CMD [ "-jar", "/app.jar", "--spring.config.location=classpath:/application-docker.properties"]
 ENTRYPOINT [ "java" ]
