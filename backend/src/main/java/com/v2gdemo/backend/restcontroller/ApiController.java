@@ -3,20 +3,21 @@ package com.v2gdemo.backend.restcontroller;
 import com.v2gdemo.backend.dao.UserDao;
 import com.v2gdemo.backend.entity.Character;
 import com.v2gdemo.backend.entity.CharacterRepository;
+import com.v2gdemo.backend.entity.Transaction;
 import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import com.v2gdemo.backend.service.ApiService;
+import com.v2gdemo.backend.service.BillingService;
 import com.v2gdemo.backend.service.CreateCharactersService;
 import com.v2gdemo.backend.service.MoveVehicleService;
 import com.v2gdemo.places.FindRouteObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-//@RestController()
-//@RequestMapping("api")
+@RestController()
+@RequestMapping("api")
 public class ApiController {
+  @Autowired
+  private BillingService billingService;
   @Autowired
   private ApiService apiService;
 @Autowired
@@ -46,5 +47,10 @@ return apiService.buildRoute(from,to);
         return createCharactersService.createCharacters(userId, mapId);
     }
 
+   @PostMapping("/makeTransaction")
+  public Transaction makeTransaction(@RequestParam("fromAddress") String fromAddress,@RequestParam("toAddress") String toAddress,@RequestParam("value") long value){
 
+    return billingService.makeTransaction(fromAddress,toAddress,value);
+
+   }
 }

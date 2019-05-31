@@ -1,38 +1,48 @@
 package com.v2gdemo.backend.service;
 
+import com.v2gdemo.backend.entity.*;
 import com.v2gdemo.backend.entity.Object;
-import com.v2gdemo.backend.entity.ObjectRepository;
-import com.v2gdemo.backend.entity.Wallet;
-import com.v2gdemo.backend.entity.WalletRepository;
+import com.v2gdemo.backend.restcontroller.exception.ServerException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BillingService {
   private WalletRepository walletRepository;
-  private ObjectRepository objectRepository;
-  public BillingService(WalletRepository walletRepository, ObjectRepository objectRepository){
-    this.objectRepository = objectRepository;
+  private TransactionRepository transactionRepository;
+  public BillingService(WalletRepository walletRepository,TransactionRepository transactionRepository){
+    this.transactionRepository = transactionRepository;
     this.walletRepository = walletRepository;
   }
-  public synchronized void makeTransaction(Object car, String address, long value) throws Exception{
-    Wallet wallet = walletRepository.findByAddress(address);
-    if (wallet == null) throw new Exception("Wrong address");
-    if (car.getWallet().getBalance() < value) throw new Exception("Not enough money!");
+  public synchronized Transaction makeTransaction(String fromAddress, String toAddress, long value) throws ServerException {
+    Wallet from = walletRepository.findByAddress(fromAddress);
+    Wallet to = walletRepository.findByAddress(toAddress);
+    if (from == null || to == null) throw new ServerException("Wrong address");
+    if (from.getBalance() < value) throw new ServerException("Not enough money!");
 
-   long balance = car.getWallet().getBalance();
+   long fromBalance = from.getBalance();
 
-    long chargerBalance = wallet.getBalance();
-
-
-    balance = balance -value;
-    chargerBalance = chargerBalance+value;
+    long toBalance = to.getBalance();
 
 
-    car.getWallet().setBalance(balance);
-    wallet.setBalance(chargerBalance);
+    fromBalance -= value;
+    toBalance += value;
 
-    objectRepository.save(car);
-    walletRepository.save(wallet);
 
+
+    Transaction transaction = new Transaction();
+
+    transaction.setSource(from);
+    transaction.setValue(value);
+
+
+    from.setBalance(fromBalance);
+    to.setBalance(toBalance);
+
+
+    transactionRepository.save(transaction);
+    walletRepository.saveAll(List.of(from,to));
+ return transaction;
   }
 }
