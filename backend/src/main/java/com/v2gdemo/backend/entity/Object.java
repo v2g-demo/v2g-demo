@@ -1,19 +1,11 @@
 package com.v2gdemo.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,14 +25,15 @@ public class Object {
     @JsonBackReference("obz")
     private Map map;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "wallet_id", referencedColumnName = "id")
+  private Wallet wallet;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     @JsonBackReference("objects")
     private Character owner;
 
-//    @OneToOne(mappedBy = "object")
-//    @JsonManagedReference("tasks")
-//    private Wallet wallet;
 
     @NotBlank
     private String name;

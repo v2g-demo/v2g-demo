@@ -74,8 +74,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        // http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/user/login").permitAll().antMatchers("/user/get/**").hasRole(User.Role.PLAYER.toString()).antMatchers("/", "/login/**","/callback/", "/webjars/**", "/error**")
-                .permitAll();
+                .antMatchers("/user/login").permitAll().antMatchers("/user/get/**").hasRole(User.Role.PLAYER.toString()).antMatchers("/", "/login/**","/callback/", "/webjars/**", "/error**","/api/**")
+          .permitAll()                   //since we are developing, dont need security now
+                ;
 
      http.exceptionHandling().authenticationEntryPoint(new ForbiddenEntryPoint());
       http.apply(new JwtFilterConfiguer(provider));

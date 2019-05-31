@@ -76,7 +76,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         charRepository.save(character);
 
         try {
-          JsonNode chargeStations = findPlaceObject.getChargeStations("500000", "57.751244,37.618423");
+          JsonNode chargeStations = findPlaceObject.getChargeStations("50", "57.751244,37.618423");
           for (JsonNode js: chargeStations) {
             for (JsonNode jsonNode: js) {
               Object object = new Object();
@@ -87,6 +87,9 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
               object.setType(Object.Type.CHARGER);
               object.setRotationAngle(0);
               object.setOwner(character);
+              Wallet wallet = new Wallet();
+              wallet.setObject(object);
+              object.setWallet(wallet);
               objectRepository.save(object);
 
             }
@@ -95,53 +98,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         } catch (Exception ex){ex.printStackTrace();}
 
 
-//        Object object = new Object();
-//        object.setMap(map);
-//        object.setName("charger");
 
-
-
-
-//        Object object = new Object();
-//
-//        object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
-//        object.setLocation(new Object.Location(52.522703, 13.413916));
-//        object.setName("Allego num_");
-//        object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
-//        object.setReference(null);
-//        object.setRotationAngle(0);
-//      object.setType(Object.Type.CHARGER);
-//      object.setMap(map);
-//      object.setOwner(character);
-//      objectRepository.save(object);
-//
-//
-//      Object object2 = new Object();
-//
-//      object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
-//      object.setLocation(new Object.Location(52.522703, 13.413916));
-//      object.setName("Allego num_");
-//      object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
-//      object.setReference(null);
-//      object.setRotationAngle(0);
-//      object.setType(Object.Type.CHARGER);
-//      object.setMap(map);
-//      object.setOwner(character);
-//      objectRepository.save(object);
-//
-//
-//      Object object3 = new Object();
-//
-//      object.setFormattedAddress("Alexanderpl. 5, 10178 Berlin");
-//      object.setLocation(new Object.Location(52.522703, 13.413916));
-//      object.setName("Allego num_");
-//      object.setPlaceId("ChIJxSFOWTx_bIcRyzrZOTJ7YUM");
-//      object.setReference(null);
-//      object.setRotationAngle(0);
-//      object.setType(Object.Type.CHARGER);
-//      object.setMap(map);
-//      object.setOwner(character);
-//      objectRepository.save(object);
 
     try {
       createRespawnPoints(map);
