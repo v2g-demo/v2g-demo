@@ -30,7 +30,7 @@ import java.util.List;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class InitialDataCreator implements ApplicationListener<ApplicationReadyEvent> {
   private String radius = "50000";
-  private String location= "60.192059,24.945831";
+  private String location= "52.520008,13.404954";
     @NonNull
     private  CharacterRepository charRepository;
     private UserDao userDao;
@@ -60,7 +60,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         }
 
         map = new Map();
-       map.setCenter(new Map.Location(49.842957,24.031111));
+       map.setCenter(new Map.Location(52.520008,13.404954));
        map.setZoom(5);
        map.setName("Berlin");
        map = mapRepository.save(map);
