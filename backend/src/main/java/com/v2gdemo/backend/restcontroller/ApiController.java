@@ -42,7 +42,7 @@ return apiService.buildRoute(from,to);
 
    }
 
-    @GetMapping("/createCharacter")
+    @PostMapping("/createCharacter")
     public Character createCharacters(@RequestParam("userId") Long userId, @RequestParam("mapId") long mapId) {
         return createCharactersService.createCharacters(userId, mapId);
     }
