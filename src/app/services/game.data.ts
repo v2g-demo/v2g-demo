@@ -1,11 +1,15 @@
+import {Resource} from 'angular4-hal';
 
-export class GameMap {
+export class Location {
+  latitude: number; longitude: number;
+}
+
+export class GameMap extends Resource {
   id: string;
   name: string;
-  usersOnline: number;
-  latitude: number;
-  longitude: number;
+  center: Location;
   zoom: number;
+  objects: MapObject[];
 }
 
 
@@ -27,4 +31,14 @@ export class GameData {
 export class Wallet {
   id: number;
   value: number;
+}
+
+export class MapObject extends Resource {
+
+  // id: number;
+  name: string;
+  placeId: string;
+  formattedAddress: string;
+  location: Location;
+  type: string;
 }

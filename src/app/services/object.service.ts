@@ -1,19 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {RestService} from 'angular4-hal';
 import {Observable} from 'rxjs';
-
-import {Resource} from 'angular4-hal';
-
-export class MapObject extends Resource {
-
-    // id: number;
-    name: string;
-    placeId: string;
-    formattedAddress: string;
-    location: {latitude: number; longitude: number};
-    type: string;
-    // players: Player[];
-}
+import {MapObject} from './game.data';
 
 @Injectable()
 export class ObjectService extends RestService<MapObject> {

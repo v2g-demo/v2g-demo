@@ -1,5 +1,7 @@
 <div style="height: 80vh; width: 100%"
      leaflet
      [leafletOptions]="options"
-     [leafletLayers]="layers">
+     [leafletLayers]="layers"
+    (leafletClick)="click($event)"
+    >
 </div>

@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {circle, icon, latLng, marker, polygon, tileLayer} from 'leaflet';
 import {MapService} from '../../services/map.service';
 import {ActivatedRoute} from '@angular/router';
-import {MapObject, ObjectService} from '../../services/object.service';
+import {ObjectService} from '../../services/object.service';
+import {MapObject} from '../../services/game.data';
 
 @Component({
   selector: 'app-lefleat-map',
@@ -26,20 +27,10 @@ export class LefleatMapComponent implements OnInit {
       }),
       'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '...'})
     },
-    overlays: {'Big Circle': circle([52.520008, 13.404954], {radius: 5000})}
+    // overlays: {'Big Circle': circle([52.520008, 13.404954], {radius: 5000})}
   };
 
   layers = [];
-  // layers = [
-  //   marker([ 52.520008, 13.404954 ],{
-  //     icon: icon({
-  //       iconSize: [ 25, 41 ],
-  //       iconAnchor: [ 13, 41 ],
-  //       iconUrl: 'assets/marker-icon.png',
-  //       shadowUrl: 'assets/marker-shadow.png'
-  //     })
-  //   })
-  // ];
 
   constructor(public route: ActivatedRoute, private mapService: MapService, private objectService: ObjectService) {
   }
@@ -54,18 +45,34 @@ export class LefleatMapComponent implements OnInit {
 
         const m = marker([obj.location.latitude, obj.location.longitude], {
           title: obj.name,
+          alt: obj.name,
+          clickable: true,
+          riseOnHover: true,
           icon: icon({
-            iconSize: [25, 41],
-            iconAnchor: [13, 41],
-            iconUrl: 'assets/marker-icon.png',
-            shadowUrl: 'assets/marker-shadow.png'
+            iconSize: [16, 16],
+            iconAnchor: [16, 16],
+            iconUrl: 'assets/CHARGER.png',
+            // shadowUrl: 'assets/marker-shadow.png'
           })
         });
+
+        m.bindPopup('<ion-button size="small">charge</ion-button>');
+
+          //   .on('click', (ev) => {
+          // this.zone.run(() => {
+          //   this.message = 'circle marker click';
+          // });
+
         this.layers.push(m);
       });
 
 
     });
+
+  }
+
+  click(event) {
+    console.log(event);
 
   }
 

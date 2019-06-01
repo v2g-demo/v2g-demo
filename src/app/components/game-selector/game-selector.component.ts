@@ -24,8 +24,8 @@ export class GameSelectorComponent implements OnInit {
 
   public ngOnInit() {
 
-    this.mapService.getMaps().subscribe(data => {
-    this.gameSelectorsData = this.mapService.parseMapsData(data);
+    this.mapService.getAll().subscribe(data => {
+    this.gameSelectorsData = data;
     });
   }
 
@@ -35,7 +35,7 @@ export class GameSelectorComponent implements OnInit {
 
   makeOptions(data: GameMap): MapOptions {
     const result = this.mapOptions;
-    result.center = latLng(data.latitude, data.longitude);
+    result.center = latLng(data.center.latitude, data.center.longitude);
     result.zoom = data.zoom;
     return  result;
   }
