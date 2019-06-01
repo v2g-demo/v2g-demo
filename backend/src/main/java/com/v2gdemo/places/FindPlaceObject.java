@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 public interface FindPlaceObject {
 
      JsonNode getChargeStations(String radius,String location) throws Exception;
-
+     JsonNode getDetails(String placeId) throws Exception;
 
 
 }

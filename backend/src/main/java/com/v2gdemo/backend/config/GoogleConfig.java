@@ -20,7 +20,6 @@ public class GoogleConfig {
     @Bean
     public FindPlaceObject findPlaceObject(@Value("${google.secret.key}") String key) throws Exception{
         FindPlaceImpl findPlace = new FindPlaceImpl();
-        System.out.println(key);
         findPlace.setKey(key);
         return findPlace;
     }
