@@ -77,7 +77,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
 
 
         try {
-          JsonNode chargeStations = findPlaceObject.getChargeStations("50000", "57.751244,37.618423");
+          JsonNode chargeStations = findPlaceObject.getChargeStations("500000", "57.751244,37.618423");
           for (JsonNode js: chargeStations) {
             for (JsonNode jsonNode: js) {
               JsonNode location = findPlaceObject.getDetails(jsonNode.get("place_id").asText()).get("result").get("geometry").get("location");
