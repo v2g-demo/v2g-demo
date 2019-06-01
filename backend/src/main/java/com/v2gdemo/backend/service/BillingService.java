@@ -25,7 +25,7 @@ public class BillingService {
 
     long toBalance = to.getBalance();
 
-
+ 
     fromBalance -= value;
     toBalance += value;
 
