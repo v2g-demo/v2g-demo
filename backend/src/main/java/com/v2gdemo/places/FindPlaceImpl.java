@@ -33,11 +33,12 @@ public class FindPlaceImpl implements FindPlaceObject {
 
 
     public JsonNode sendRequest(PlaceAutocompleteRequest request) throws Exception {
-         builder = new URIBuilder("https://maps.googleapis.com/maps/api/place/autocomplete/json?strictbounds");
+         builder = new URIBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json");
         builder.addParameter("key", key);
-        builder.addParameter("input", request.getInput());
-        builder.addParameter("location", request.getLoc());
+        builder.addParameter("query", request.getInput());
         builder.addParameter("radius", request.getRad());
+        builder.addParameter("location", request.getLoc());
+        if (request.getNextPageToken()!= null) builder.addParameter("pagetoken",request.getNextPageToken());
 
 
         getReq= new HttpGet(builder.build());
@@ -52,7 +53,12 @@ public class FindPlaceImpl implements FindPlaceObject {
         return nodes;
     }
 
-    @Override
+  @Override
+  public JsonNode getChargeStations(String radius, String location, String nextPageToken) throws Exception {
+    return this.sendRequest(new PlaceAutocompleteRequest("car charger",radius,location,true,nextPageToken));
+  }
+
+  @Override
     public JsonNode getChargeStations( String radius, String location) throws Exception {
         return this.sendRequest(new PlaceAutocompleteRequest("car charger",radius,location,true));
     }
@@ -64,8 +70,17 @@ public class FindPlaceImpl implements FindPlaceObject {
         private String rad;
         private String loc;
         private boolean strictBounds;
+        private String nextPageToken;
 
-        public String getInput() {
+      public String getNextPageToken() {
+        return nextPageToken;
+      }
+
+      public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+      }
+
+      public String getInput() {
             return input;
         }
 
@@ -102,6 +117,13 @@ public class FindPlaceImpl implements FindPlaceObject {
             this.rad = rad;
             this.loc = loc;
             this.strictBounds = strictBounds;
+        }
+        public PlaceAutocompleteRequest(String input, String rad, String loc, boolean strictBounds,String nextPageToken) {
+            this.input = input;
+            this.rad = rad;
+            this.loc = loc;
+            this.strictBounds = strictBounds;
+            this.nextPageToken = nextPageToken;
         }
     }
 

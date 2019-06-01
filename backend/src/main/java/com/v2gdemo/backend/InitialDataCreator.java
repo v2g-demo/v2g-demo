@@ -20,6 +20,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +29,8 @@ import java.util.List;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class InitialDataCreator implements ApplicationListener<ApplicationReadyEvent> {
+  private String radius = "50000";
+  private String location= "52.520008,13.404954";
     @NonNull
     private  CharacterRepository charRepository;
     private UserDao userDao;
@@ -74,29 +77,16 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         character.setName("Allego");
         character.setRole(Character.Role.ORGANIZATION);
         charRepository.save(character);
-
+      ArrayList<String> placesId = new ArrayList<>();
 
         try {
-          JsonNode chargeStations = findPlaceObject.getChargeStations("500000", "57.751244,37.618423");
-          for (JsonNode js: chargeStations) {
-            for (JsonNode jsonNode: js) {
-              JsonNode location = findPlaceObject.getDetails(jsonNode.get("place_id").asText()).get("result").get("geometry").get("location");
-              Object object = new Object();
-              object.setName(jsonNode.get("description").asText());
-              object.setReference(jsonNode.get("reference").asText());
-              object.setLocation(new Object.Location(Double.parseDouble(location.get("lat").asText()), Double.parseDouble(location.get("lng").asText())));
-              object.setPlaceId(jsonNode.get("place_id").asText());
-              object.setType(Object.Type.CHARGER);
-              object.setRotationAngle(0);
-              object.setOwner(character);
-              Wallet wallet = new Wallet();
-              wallet.setObject(object);
-              object.setWallet(wallet);
-              objectRepository.save(object);
-
+            JsonNode chargeStations = findPlaceObject.getChargeStations(radius, location);
+            getObjects(chargeStations,character);
+            while (chargeStations.get("next_page_token")!=null){
+              Thread.sleep(1000); // There is a short delay between when a next_page_token is issued, and when it will become valid
+              chargeStations = findPlaceObject.getChargeStations(radius,location,chargeStations.get("next_page_token").asText());
+              getObjects(chargeStations,character);
             }
-
-          }
         } catch (Exception ex){ex.printStackTrace();}
 
 
@@ -117,5 +107,29 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
       });
       this.respawnPointRepository.saveAll(respawnPoints);
       System.out.println(respawnPoints.toString());
+    }
+
+    private void getObjects(JsonNode response,Character owner){
+
+      for (JsonNode jsonNode : response.get("results")) {
+        JsonNode location = jsonNode.get("geometry").get("location");
+        Object object = new Object();
+        object.setName(jsonNode.get("name").asText());
+        object.setReference(jsonNode.get("reference").asText());
+        object.setLocation(new Object.Location(Double.parseDouble(location.get("lat").asText()), Double.parseDouble(location.get("lng").asText())));
+        object.setPlaceId(jsonNode.get("place_id").asText());
+        object.setType(Object.Type.CHARGER);
+        object.setRotationAngle(0);
+        object.setOwner(owner);
+        object.setFormattedAddress(jsonNode.get("formatted_address").asText());
+        Wallet wallet = new Wallet();
+        wallet.setObject(object);
+        object.setWallet(wallet);
+        objectRepository.save(object);
+
+
+
+
+      }
     }
 }
