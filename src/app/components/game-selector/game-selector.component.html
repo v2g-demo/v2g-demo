@@ -4,16 +4,32 @@
     <div class="game-selector__wrapper_bak" *ngIf="gameSelectorsData">
         <ion-card  class="card" *ngFor="let item of gameSelectorsData">
 
-          <div  style="height: 25vh; width: 100%;"
-            leaflet
-                [leafletOptions]="makeOptions(item)"
-          ></div>
+            <div  style="height: 25vh; width: 100%;"
+                  leaflet
+                  [leafletOptions]="makeOptions(item)"
+            ></div>
 
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-            <p class="card-text">Online: {{item.usersOnline}}</p>
-            <a [routerLink]="['/', 'map', item.id]" class="ion-color-primary">Play the game</a>
-          </div>
+            <ion-card-header>
+                <ion-card-subtitle>Online: {{item.usersOnline}}</ion-card-subtitle>
+                <ion-card-title>{{item.name}}</ion-card-title>
+            </ion-card-header>
+
+            <ion-button color="primary" [routerLink]="['/', 'map', item.id]">Play the game</ion-button>
+
       </ion-card >
     </div>
+
+    <ion-card>
+        <ion-item>
+            <ion-icon name="pin" slot="start"></ion-icon>
+            <ion-label>BErlin</ion-label>
+            <ion-button fill="outline" slot="end">Play the game</ion-button>
+        </ion-item>
+
+        <ion-card-content>
+            This is content, without any paragraph or header tags,
+            within an ion-card-content element.
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>

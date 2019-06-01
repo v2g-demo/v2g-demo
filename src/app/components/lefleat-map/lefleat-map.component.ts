@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {circle, icon, latLng, marker, polygon, tileLayer} from 'leaflet';
 import {MapService} from '../../services/map.service';
 import {ActivatedRoute} from '@angular/router';
+import {MapObject, ObjectService} from '../../services/object.service';
 
 @Component({
   selector: 'app-lefleat-map',
@@ -40,22 +41,30 @@ export class LefleatMapComponent implements OnInit {
   //   })
   // ];
 
-  constructor(public route: ActivatedRoute, private mapService: MapService) {
+  constructor(public route: ActivatedRoute, private mapService: MapService, private objectService: ObjectService) {
   }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.mapService.getObjects(id).subscribe((data) => {
-      console.log(data);
-      const m = marker([52.520008, 13.404954], {
-        icon: icon({
-          iconSize: [25, 41],
-          iconAnchor: [13, 41],
-          iconUrl: 'assets/marker-icon.png',
-          shadowUrl: 'assets/marker-shadow.png'
-        })
+
+    this.objectService.getAll().subscribe((data: MapObject[]) => {
+
+      data.map((obj: MapObject) => {
+        console.log(obj);
+
+        const m = marker([obj.location.latitude, obj.location.longitude], {
+          title: obj.name,
+          icon: icon({
+            iconSize: [25, 41],
+            iconAnchor: [13, 41],
+            iconUrl: 'assets/marker-icon.png',
+            shadowUrl: 'assets/marker-shadow.png'
+          })
+        });
+        this.layers.push(m);
       });
-      this.layers.push(m);
+
+
     });
 
   }

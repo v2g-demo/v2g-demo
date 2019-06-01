@@ -23,6 +23,8 @@ import { GameComponent } from './components/game/game.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {AngularHalModule} from 'angular4-hal';
 import {HeaderComponent} from './header/header.component';
+import {ExternalConfigurationService} from './services/external-configuration-service.service';
+import {ObjectService} from './services/object.service';
 
 
 
@@ -58,7 +60,9 @@ import {HeaderComponent} from './header/header.component';
     SplashScreen,
     GameDataService,
     AuthGuardService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ObjectService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService}
   ],
   bootstrap: [AppComponent]
 })

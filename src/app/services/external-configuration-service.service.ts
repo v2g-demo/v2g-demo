@@ -3,14 +3,14 @@ import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from 'angu
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class ExternalConfigurationService /* implements ExternalConfigurationHandlerInterface */  {
+export class ExternalConfigurationService  implements ExternalConfigurationHandlerInterface   {
 
   getProxyUri(): string {
-    return 'http://proxy.url/api/';
+    return 'http://localhost:8085/api/';
   }
 
   getRootUri(): string {
-    return 'http://localhost:8080/api/';
+    return 'http://localhost:8085/api/';
   }
 
   getHttp(): HttpClient {
@@ -25,5 +25,12 @@ export class ExternalConfigurationService /* implements ExternalConfigurationHan
   }
 
   setExternalConfiguration(externalConfiguration: ExternalConfiguration) {
+  }
+
+  deserialize(): any {
+
+  }
+  serialize(): any {
+
   }
 }

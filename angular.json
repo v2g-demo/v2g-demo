@@ -32,15 +32,9 @@
               }
             ],
             "styles": [
-              {
-                "input": "src/theme/variables.scss"
-              },
-              {
-                "input": "src/global.scss"
-              },
-              {
-                "input": "./node_modules/leaflet/dist/leaflet.css"
-              }
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

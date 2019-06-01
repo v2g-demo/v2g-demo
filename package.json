@@ -32,7 +32,7 @@
     "angular4-hal": "^7.8.14",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "leaflet": "^1.4.0",
+    "leaflet": "^1.5.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
@@ -49,7 +49,6 @@
     "@ionic/angular-toolkit": "~1.5.1",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/leaflet": "^1.4.4",
     "@types/node": "~12.0.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
