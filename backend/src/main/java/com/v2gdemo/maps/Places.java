@@ -27,7 +27,7 @@ public class Places {
 
 
     public FindPlaceFromText GetChargers(LatLng center, int radius) {
-        FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "home",
+        FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "car charger",
                 FindPlaceFromTextRequest.InputType.TEXT_QUERY)
                 .fields(
                         FindPlaceFromTextRequest.FieldMask.PHOTOS,
