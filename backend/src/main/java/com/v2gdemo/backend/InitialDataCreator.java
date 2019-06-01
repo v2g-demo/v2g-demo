@@ -75,14 +75,16 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
         character.setRole(Character.Role.ORGANIZATION);
         charRepository.save(character);
 
+
         try {
-          JsonNode chargeStations = findPlaceObject.getChargeStations("50", "57.751244,37.618423");
+          JsonNode chargeStations = findPlaceObject.getChargeStations("50000", "57.751244,37.618423");
           for (JsonNode js: chargeStations) {
             for (JsonNode jsonNode: js) {
+              JsonNode location = findPlaceObject.getDetails(jsonNode.get("place_id").asText()).get("result").get("geometry").get("location");
               Object object = new Object();
               object.setName(jsonNode.get("description").asText());
               object.setReference(jsonNode.get("reference").asText());
-              object.setLocation(new Object.Location(52.520008, 13.404954));
+              object.setLocation(new Object.Location(Double.parseDouble(location.get("lat").asText()), Double.parseDouble(location.get("lng").asText())));
               object.setPlaceId(jsonNode.get("place_id").asText());
               object.setType(Object.Type.CHARGER);
               object.setRotationAngle(0);

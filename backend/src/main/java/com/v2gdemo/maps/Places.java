@@ -7,6 +7,7 @@ import com.google.maps.PlacesApi;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
+import com.google.maps.model.PlaceIdScope;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +23,11 @@ public class Places {
                 .build();
     }
 
+
+
+
     public FindPlaceFromText GetChargers(LatLng center, int radius) {
-        FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "car charger",
+        FindPlaceFromTextRequest req = PlacesApi.findPlaceFromText(context, "home",
                 FindPlaceFromTextRequest.InputType.TEXT_QUERY)
                 .fields(
                         FindPlaceFromTextRequest.FieldMask.PHOTOS,
@@ -33,10 +37,9 @@ public class Places {
                         FindPlaceFromTextRequest.FieldMask.PLACE_ID,
                         //FindPlaceFromTextRequest.FieldMask.RATING,
                         //FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                        FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-                .locationBias(new FindPlaceFromTextRequest.LocationBiasCircular(center,radius));
+                        FindPlaceFromTextRequest.FieldMask.GEOMETRY);
         try {
-            FindPlaceFromText results = req.awaitIgnoreError();
+            FindPlaceFromText results = req.await();
             return results;
 
             // Handle successful request.
