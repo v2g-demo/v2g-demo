@@ -84,7 +84,7 @@ public class InitialDataCreator implements ApplicationListener<ApplicationReadyE
             JsonNode chargeStations = findPlaceObject.getChargeStations(radius, location);
             getObjects(chargeStations,character);
             while (chargeStations.get("next_page_token")!=null){
-              Thread.sleep(1000); // There is a short delay between when a next_page_token is issued, and when it will become valid
+              Thread.sleep(2000); // There is a short delay between when a next_page_token is issued, and when it will become valid
               chargeStations = findPlaceObject.getChargeStations(radius,location,chargeStations.get("next_page_token").asText());
               getObjects(chargeStations,character);
             }
