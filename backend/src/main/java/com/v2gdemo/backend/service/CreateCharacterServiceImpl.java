@@ -51,6 +51,7 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
     car.setLocation(new Object.Location(respawnPoint.getLatitude(),respawnPoint.getLongitude()));
     car.setType(Object.Type.VEHICLE);
     car.setOwner(character);
+    car.setMap(character.getMap());
     objectRepository.save(car);
 
     Object home = new Object();
@@ -58,6 +59,7 @@ public class CreateCharacterServiceImpl implements CreateCharactersService {
     home.setLocation(new Object.Location(respawnPoint.getLatitude(),respawnPoint.getLongitude()));
     home.setType(Object.Type.HOUSE);
     home.setOwner(character);
+    home.setMap(character.getMap());
     objectRepository.save(home);
 
 
