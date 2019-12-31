@@ -26,7 +26,22 @@ import {HeaderComponent} from './header/header.component';
 import {ExternalConfigurationService} from './services/external-configuration-service.service';
 import {ObjectService} from './services/object.service';
 
+import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
 
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+  ],
+  tosUrl: '/terms',
+  privacyPolicyUrl: '/privacy',
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+};
 
 @NgModule({
   declarations: [
@@ -49,6 +64,9 @@ import {ObjectService} from './services/object.service';
     HttpClientModule,
     NgxHalClientModule.forRoot(),
     LeafletModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     // AgmCoreModule.forRoot({
     //   apiKey: environment.googleMapsApiKey
     // }),

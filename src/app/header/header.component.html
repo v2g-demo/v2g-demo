@@ -7,8 +7,14 @@
 
     <ion-buttons slot="end">
 
+      <firebase-ui></firebase-ui>
+      <h1 *ngIf="afAuth.auth.currentUser">
+        Welcome {{afAuth.auth.currentUser.displayName}}!
+      </h1>
+      <ion-button *ngIf="afAuth.auth.currentUser" (click)="signOut()">Sign Out</ion-button>
+
       <ion-button *ngIf="loggedIn" [routerLink]="['/login']" fragment="logout">
-        <ion-label>{{ user }}</ion-label>
+        <ion-label>{{ afAuth.auth.currentUser.displayName }}</ion-label>
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
 

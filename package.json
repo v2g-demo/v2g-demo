@@ -15,6 +15,7 @@
   "dependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
+    "@angular/fire": "^5.2.3",
     "@angular/forms": "^8.2.14",
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
@@ -29,6 +30,9 @@
     "@ionic/angular": "^4.7.1",
     "@lagoshny/ngx-hal-client": "^1.0.9",
     "core-js": "^2.5.4",
+    "firebase": "^7.6.1",
+    "firebaseui": "^4.4.0",
+    "firebaseui-angular": "^4.0.1",
     "font-awesome": "^4.7.0",
     "leaflet": "^1.6.0",
     "rxjs": "~6.5.1",

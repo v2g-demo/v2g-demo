@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthGuardService} from '../services/auth-guard.service';
 import {ActivatedRoute} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,28 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
+  hasVerifiedEmail = true;
   loggedIn: boolean;
-  user: string;
   @Input() title: string;
 
-  constructor(private auth: AuthGuardService, private route: ActivatedRoute) {
+
+  constructor(private authService: AuthGuardService, private route: ActivatedRoute, public afAuth: AngularFireAuth) {
+
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        authService.login(afAuth.auth.currentUser.displayName);
+        this.hasVerifiedEmail = this.afAuth.auth.currentUser.emailVerified;
+      }
+    });
 
     route.params.subscribe(val => {
       this.checkLogin();
+    });
+  }
+
+  signOut() {
+    this.afAuth.auth.signOut().then(() => {
+      location.reload();
     });
   }
 

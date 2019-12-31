@@ -27,11 +27,11 @@ export class AuthGuardService implements CanActivate  {
     return ''; // call api
   }
 
-  // login (username: string) {
-  //   console.log('login:' + username);
-  //   this.authenticatedUser = username;
-  //   localStorage.setItem('authenticatedUser', this.authenticatedUser);
-  // }
+  login(username: string) {
+    console.log('login:' + username);
+    this.authenticatedUser = username;
+    localStorage.setItem('authenticatedUser', this.authenticatedUser);
+  }
   //
   // logout() {
   //   console.log('logout');

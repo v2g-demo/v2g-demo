@@ -6,7 +6,15 @@ export const environment = {
   production: false,
   googleMapsApiKey: 'KEY',
   host: 'http://localhost:4200',
-  apiUrl: 'http://localhost:8080/api'
+  apiUrl: 'http://localhost:8080/api',
+  firebase: {
+    apiKey: 'AIzaSyCB-nfwTCeJ_113ak55NmqwqAv7I4BdQ1c',
+    authDomain: 'ionic-auth-example.firebaseapp.com',
+    databaseURL: 'https://ionic-auth-example.firebaseio.com',
+    projectId: 'ionic-auth-example',
+    storageBucket: '',
+    messagingSenderId: '994395349389'
+  }
 };
 
 /*
