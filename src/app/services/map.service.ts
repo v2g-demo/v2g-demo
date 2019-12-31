@@ -5,8 +5,7 @@ import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/internal/operators/tap';
 import {flatMap} from 'rxjs/operators';
 import {GameMap, MapObject} from './game.data';
-import {RestService} from 'angular4-hal';
-
+import {RestService} from '@lagoshny/ngx-hal-client';
 
 @Injectable({
   providedIn: 'root'

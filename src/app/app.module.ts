@@ -21,7 +21,7 @@ import {MapComponent} from './components/map/map.component';
 import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 import { GameComponent } from './components/game/game.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import {AngularHalModule} from 'angular4-hal';
+import {NgxHalClientModule} from '@lagoshny/ngx-hal-client';
 import {HeaderComponent} from './header/header.component';
 import {ExternalConfigurationService} from './services/external-configuration-service.service';
 import {ObjectService} from './services/object.service';
@@ -47,7 +47,7 @@ import {ObjectService} from './services/object.service';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AngularHalModule.forRoot(),
+    NgxHalClientModule.forRoot(),
     LeafletModule.forRoot(),
     // AgmCoreModule.forRoot({
     //   apiKey: environment.googleMapsApiKey

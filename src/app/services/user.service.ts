@@ -1,5 +1,5 @@
 import {Injectable, Injector} from '@angular/core';
-import {RestService} from 'angular4-hal';
+import {RestService} from '@lagoshny/ngx-hal-client';
 import {Observable} from 'rxjs';
 import {User} from './game.data';
 

@@ -1,10 +1,13 @@
-import {Resource} from 'angular4-hal';
+import {Resource} from '@lagoshny/ngx-hal-client';
 
 export class Location {
   latitude: number; longitude: number;
 }
 
 export class GameMap extends Resource {
+  constructor() {
+    super();
+  }
   id: string;
   name: string;
   center: Location;
@@ -34,7 +37,9 @@ export class Wallet {
 }
 
 export class MapObject extends Resource {
-
+  constructor() {
+    super();
+  }
   // id: number;
   name: string;
   placeId: string;
