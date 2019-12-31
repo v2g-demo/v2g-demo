@@ -6,7 +6,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class ExternalConfigurationService  implements ExternalConfigurationHandlerInterface   {
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
   }
 
   getProxyUri(): string {
@@ -17,6 +17,7 @@ export class ExternalConfigurationService  implements ExternalConfigurationHandl
     return 'http://localhost:8080/api/';
   }
 
+  // @ts-ignore
   getHttp(): HttpClient {
     return this.http;
   }

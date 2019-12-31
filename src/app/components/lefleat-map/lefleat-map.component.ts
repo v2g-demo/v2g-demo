@@ -56,7 +56,7 @@ export class LefleatMapComponent implements OnInit {
           })
         });
 
-        m.bindPopup('<ion-button size="small">charge</ion-button>');
+        m.bindPopup('<ion-button size="small" >charge</ion-button>');
 
           //   .on('click', (ev) => {
           // this.zone.run(() => {

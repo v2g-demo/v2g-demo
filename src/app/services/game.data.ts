@@ -49,5 +49,8 @@ export class MapObject extends Resource {
 }
 
 export class User extends Resource {
+  constructor() {
+    super();
+  }
   name: string;
 }
