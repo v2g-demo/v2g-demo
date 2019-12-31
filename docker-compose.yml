@@ -52,6 +52,13 @@ services:
     ports:
       - 8081:8080
 
+#  ganache:
+#    image: trufflesuite/ganache-cli:latest
+#    restart: always
+#    ports:
+#      - 8545:8545
+
+
   # sample:
   #   image: bronin/java-sample-microservice:latest
   #   ports:w
