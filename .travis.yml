@@ -22,7 +22,7 @@ matrix:
       script:
         - npm run lint
         - npm run build --prod
-        - npm run e2e
+#        - npm run e2e
         - npm run test-headless
 
       after_success:
