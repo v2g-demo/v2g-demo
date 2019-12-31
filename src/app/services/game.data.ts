@@ -42,3 +42,7 @@ export class MapObject extends Resource {
   location: Location;
   type: string;
 }
+
+export class User extends Resource {
+  name: string;
+}
